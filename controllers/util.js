@@ -234,7 +234,7 @@ function _valueForKeyInDictionary(key, dictionary) {
 			}
 			return data;
 		} else {
-			if (isEmpty(dictionary[key])) {
+			if (Object.size(dictionary[key]) < 1) {
 				console.log("isEmpty! ", dictionary[key]);
 				return {};
 			}
@@ -324,3 +324,11 @@ function isEmpty(obj) {
 
     return true;
 }
+
+Object.size = function(obj) {
+    var size = 0, key;
+    for (key in obj) {
+        if (obj.hasOwnProperty(key)) size++;
+    }
+    return size;
+};
