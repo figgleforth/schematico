@@ -1,5 +1,6 @@
 {
-  "name": "gimmegimme",
+  "name": "Schematico",
+  "description": "Awesome fake data generator.", 
   "dependencies": {
     "express": "^4.2.0",
     "body-parser": "^1.2.0",
