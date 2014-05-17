@@ -39,6 +39,16 @@ exports.GetRoute = function(req, res, next) {
 	});
 }
 
+exports.CheckIfRouteExists = function(req, res, next) {
+	Models.User.count({route:req.params.route}, function(error, count) {
+		if (count > 0) {
+			res.send(400, util.res("That route is already defined. Make a PUT request to update."));
+		} else {
+			next();
+		}
+	});
+}
+
 exports.PopulateModel = function(req, res, next) {
 	var data = [];
 	for (var i=0; i<(req.params.count || 1); i++) {
