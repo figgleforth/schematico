@@ -76,7 +76,7 @@ exports.GetRoutes = function(req, res, next) {
 	if (req.user) {
 		res.send(200, req.user.routes);
 	} else {
-		res send(400);
+		res.send(400);
 	}
 }
 
