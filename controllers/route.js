@@ -12,10 +12,16 @@ exports.CreateRoute = function(req, res, next) {
 		if (error) util.error(error, res);
 		else {
 			if (saved) {
-				res.send(200, {
-					message : "Route successfully created.",
-					route : "/"+req.user.username+"/"+saved.route,
-					model : saved.model
+				req.user.routes.push(saved._id);
+				req.user.save(function(error) {
+					if (error) res.send(error);
+					else {
+						res.send(200, {
+							message : "Route successfully created.",
+							route : "/"+req.user.username+"/"+saved.route,
+							model : saved.model
+						});
+					}
 				});
 			} else {
 				res.send(400, "Error. Please try again.");
@@ -67,7 +73,7 @@ exports.GetRoute = function(req, res, next) {
 }
 
 exports.CheckIfRouteExists = function(req, res, next) {
-	Models.User.count({route:req.params.route}, function(error, count) {
+	Models.Route.find({route:req.params.route, userID:req.user._id}, function(error, count) {
 		if (count > 0) {
 			res.send(400, util.res("That route is already defined. Make a PUT request to update."));
 		} else {

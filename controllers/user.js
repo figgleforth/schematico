@@ -69,7 +69,6 @@ exports.UserForToken = function(req, res, next) {
 		if (error) res.send(error);
 		else {
 			if (found) {
-				console.log("the user for this token: ", found);
 				req.user = found;
 				next();
 			} else {
