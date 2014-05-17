@@ -214,17 +214,13 @@ function _valueForKeyInDictionary(key, dictionary) {
 	} else if (typeof dictionary[key] === "object") {
 		if (Array.isArray(dictionary[key])) {
 			var subdictionary = dictionary[key][0];
-			var count = dictionary[key][1];
-			if (!count) {
-				count = (1 + Math.round(Math.random()*10));
-			}
+			var count = dictionary[key][1] ? dictionary[key][1] : (1 + Math.round(Math.random()*10));
 
 			var data = [];
 			var subdictionary = JSON.parse(JSON.stringify(subdictionary));
 			for (var i=0; i<count; i++) {
 				var newDict = {};
 				for (var subkey in subdictionary) {
-					console.log("value for subkey:", subdictionary[subkey]);
 					newDict[subkey] = _valueForKeyInDictionary(subkey, subdictionary);
 				}
 				data.push(newDict);
