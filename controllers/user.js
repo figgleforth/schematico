@@ -95,6 +95,16 @@ exports.ValidateToken = function(req, res, next) {
 	});
 }
 
+exports.ValidateUsernameAndToken = function(req, res, next) {
+	Models.User.count({username:req.params.username, token:req.body.token}, function(error, count) {
+		if (count > 0) {
+			next();
+		} else {
+			res.send(400, util.res("That token does not exist, or that username is not registered. You may need to recover your token, or you may not be signed up."));
+		}
+	});
+}
+
 // NEVER DO This
 exports.Destroy = function(req, res, next) {
 	Models.User.find({}, function(error, found) {

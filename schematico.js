@@ -18,12 +18,11 @@ app.post("/signup",		UserController.CheckIfEmailExists,
 						UserController.CreateNewUser,
 						UserController.RecoverToken);
 
-app.get("/:username/:route/:count?",	UserController.ValidateToken,
-										UserController.UserForToken,
+app.get("/:username/:route/:count?",	UserController.ValidateUsernameAndToken,
 										RouteController.GetRoute,
 										RouteController.PopulateModel);
 
-app.post("/:username/:route",	UserController.ValidateToken,
+app.post("/:username/:route",	UserController.ValidateUsernameAndToken,
 								UserController.UserForToken,
 								RouteController.CreateRoute);
 
