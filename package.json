@@ -1,10 +1,12 @@
 {
   "name": "Schematico",
-  "description": "Awesome fake data generator.", 
+  "description": "Awesome fake data generator.",
   "dependencies": {
     "express": "^4.2.0",
     "body-parser": "^1.2.0",
     "lorem-ipsum": "^1.0.1",
-    "Faker": "~0.7.0"
+    "Faker": "~0.7.0",
+    "chance": "^0.5.6",
+    "moment": "^2.6.0"
   }
 }
