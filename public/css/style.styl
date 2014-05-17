@@ -14,9 +14,51 @@
 	margin-top 20px
 	h2
 		font-size 20px
-		font-weight 200
+		font-weight 500
 		font-family "Helvetica Neue"
 		color #ff2d55
+		margin 0
+		padding 0
+		margin-top 40px
+		&:first-of-type
+			margin-top 10px
+	p
+		line-height 1.2
+		font-size 18px
+		font-weight 200
+		font-family "Helvetica Neue"
+		color #4a4a4a
+		margin 0
+		padding 0
+		margin-top 10px
+
+	.code
+		font-family monospace !important
+		font-weight 200
+		font-size 14px
+		line-height 1.2
+		color #8e8e93
+		border 1px solid fade-out(#c7c7cc, 60%)
+		border-radius 5px
+		background fade-out(#c7c7cc, 85%)
+		margin 0
+		padding 15px
+		margin-top 20px
+		width 100%
+		&.request
+			margin-right 10px
+		&.response
+			margin-left 10px
+		.t0
+			margin-left 0
+		.t1
+			margin-left 20px
+		.t2
+			margin-left 40px
+		.t3
+			margin-left 60px
+		.t4
+			margin-left 80px
 
 // #header
 // 	margin-top 20px
@@ -78,8 +120,6 @@
 	padding 10px
 
 *
-	font-family "Helvetica Neue"
-	font-weight 400
 	outline 0
 	box-sizing border-box
 	&:focus

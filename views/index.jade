@@ -10,4 +10,46 @@ block body
 	.center#body
 		.row
 			.col12
+				h2 Dynamic Data Generation
+				p Sometimes you need data to test your application or web service, but you have nowhere to get it. Schematico allows you create schemas exactly how you need them. Then it populates them with random data. 
+
+				h2 Type Aware Data
+				p Schematico knows what kind of data you are looking for and uses some of the best randomization libraries to deliver realistic data.
+
+		.row
+			.col6
+				.code.request
+					.t0 {
+					.t1 name : {
+					.t2 first : "FirstName",
+					.t2 last : "LastName"
+					.t1 }
+					.t1 phone : "Phone",
+					.t1 email : "Email",
+					.t1 address : {
+					.t2 street : "Street",
+					.t2 city : "City",
+					.t2 state : "State"
+					.t2 zip : "Zip",
+					.t1 }
+					.t0 }
+
+			.col6
+				.code.response
+					.t0 {
+					.t1 name : {
+					.t2 first : "John",
+					.t2 last : "Smith"
+					.t1 }
+					.t1 phone : "(417) 934-4467",
+					.t1 email : "mibomu@ibevajoh.io",
+					.t1 address : {
+					.t2 street : "Rolla Drive",
+					.t2 city : "Buffalo",
+					.t2 state : "NY"
+					.t2 zip : "14226",
+					.t1 }
+					.t0 }
+
+
 
