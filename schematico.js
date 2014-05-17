@@ -7,6 +7,14 @@ var modelsByRoute = {}; // temporary storage
 
 var UserController = require("./controllers/user");
 
+app.post("/recover",	UserController.Authenticate,
+						UserController.RecoverToken);
+
+app.post("/signup",		UserController.CheckIfEmailExists,
+						UserController.CreateNewUser,
+						UserController.RecoverToken);
+
+
 app.get("/:path/:count?", function(req, res) {
 	var model = modelsByRoute[req.params.path];
 	if (model) {
@@ -46,12 +54,5 @@ app.put("/:path", function(req, res) {
 		message : "Route successfully updated."
 	});
 });
-
-app.post("/recover",	UserController.Authenticate,
-						UserController.RecoverToken);
-
-app.post("/signup",		UserController.CheckIfEmailExists,
-						UserController.CreateNewUser,
-						UserController.RecoverToken);
 
 app.listen(5000);
