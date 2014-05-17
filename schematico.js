@@ -2,21 +2,23 @@ var express = require("express");
 var stylus = require("stylus");
 var util = require("./controllers/util");
 var bodyParser = require("body-parser");
-var app = express().configure(function() {
-	this.set("views", __dirname + "/views");
-	this.set("view engine", "jade");
-	this.use(bodyParser.json({type:"application/json"}));
-	this.use(express.errorHandler({
+var app = express();
+var env = process.env.NODE_ENV || 'development';
+if ('development' == env) {
+	app.set("views", __dirname + "/views");
+	app.set("view engine", "jade");
+	app.use(bodyParser.json({type:"application/json"}));
+	app.use(express.errorHandler({
 		dumpExceptions : true,
 		showStack : true
 	}));
-	this.use(stylus.middleware({
+	app.use(stylus.middleware({
 		compress : true,
 		src : __dirname + "/public",
 		dest : __dirname + "/public"
 	}));
-	this.use(express.static(__dirname + "/public"));
-});
+	app.use(express.static(__dirname + "/public"));
+}
 util.connectToMongoDB("alpha");
 var modelsByRoute = {}; // temporary storage
 
