@@ -1,10 +1,10 @@
 var express = require("express");
-var util = require("./util");
+var util = require("./controllers/util");
 var bodyParser = require("body-parser");
 var app = express().use(bodyParser.json({type:"application/json"}));
+util.connectToMongoDB("alpha");
+var modelsByRoute = {}; // temporary storage
 
-var modelsByRoute = {};
-var units = ["words", "sentences", "paragraphs"];
 
 
 app.get("/:path/:count?", function(req, res) {
