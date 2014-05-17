@@ -219,6 +219,8 @@ function _valueForKeyInDictionary(key, dictionary) {
 			var count = dictionary[key][1] ? dictionary[key][1] : (1 + Math.round(Math.random()*10));
 
 			var data = [];
+			console.log("subdictionary: ", subdictionary);
+			console.log("parsed: ", JSON.parse(JSON.stringify(subdictionary)));
 			var subdictionary = JSON.parse(JSON.stringify(subdictionary));
 			for (var i=0; i<count; i++) {
 				var newDict = {};
