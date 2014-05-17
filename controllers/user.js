@@ -54,6 +54,16 @@ exports.CheckIfEmailExists = function(req, res, next) {
 	});
 };
 
+exports.CheckIfUsernameExists = function(req, res, next) {
+	Models.User.count({username:req.body.username}, function(error, count) {
+		if (count > 0) {
+			res.send(400, utils.res("That username is already in use."));
+		} else {
+			next();
+		}
+	});
+}
+
 exports.RecoverToken = function(req, res, next) {
 	res.send(200, {
 		message : "This is your token, use it with all API calls.",
