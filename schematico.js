@@ -14,6 +14,8 @@ app.get("/killall",		UserController.Destroy,
 							res.send(200, "Destroyed all Users and Routes.");
 						});
 
+app.get("/routes",	RouteController.GetAll);
+
 app.post("/recover",	UserController.Authenticate,
 						UserController.RecoverToken);
 
