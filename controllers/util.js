@@ -216,8 +216,8 @@ function _valueForKeyInDictionary(key, dictionary) {
 	} else if (typeof dictionary[key] === "object") {
 		if (Array.isArray(dictionary[key])) {
 			var subdictionary = dictionary[key][0];
-			if (Object.keys(subdictionary).length < 1) {
-				return "Empty data type.";
+			if (subdictionary.length < 1) {
+				return [];
 			}
 			var count = dictionary[key][1] ? dictionary[key][1] : (1 + Math.round(Math.random()*10));
 
