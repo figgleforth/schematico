@@ -222,8 +222,6 @@ function _valueForKeyInDictionary(key, dictionary) {
 			var count = dictionary[key][1] ? dictionary[key][1] : (1 + Math.round(Math.random()*10));
 
 			var data = [];
-			console.log("subdictionary: ", subdictionary);
-			console.log("parsed: ", JSON.parse(JSON.stringify(subdictionary)));
 			var subdictionary = JSON.parse(JSON.stringify(subdictionary));
 			for (var i=0; i<count; i++) {
 				var newDict = {};
@@ -234,7 +232,7 @@ function _valueForKeyInDictionary(key, dictionary) {
 			}
 			return data;
 		} else {
-			if (Object.size(dictionary[key]) < 1) {
+			if (isEmpty(dictionary[key])) {
 				console.log("isEmpty! ", dictionary[key]);
 				return {};
 			}
@@ -306,29 +304,9 @@ exports.res = function(message, data) {
 }
 
 function isEmpty(obj) {
-
-    // null and undefined are "empty"
-    if (obj == null) return true;
-
-    // Assume if it has a length property with a non-zero value
-    // that that property is correct.
-    if (obj.length > 0)    return false;
-    if (obj.length === 0)  return true;
-
-    // Otherwise, does it have any properties of its own?
-    // Note that this doesn't handle
-    // toString and valueOf enumeration bugs in IE < 9
-    for (var key in obj) {
-        if (hasOwnProperty.call(obj, key)) return false;
-    }
-
-    return true;
+	for(var key in obj) {
+		if(obj.hasOwnProperty(key))
+			return false;
+	}
+	return true;
 }
-
-Object.size = function(obj) {
-    var size = 0, key;
-    for (key in obj) {
-        if (obj.hasOwnProperty(key)) size++;
-    }
-    return size;
-};
