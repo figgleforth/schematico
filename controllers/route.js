@@ -120,6 +120,7 @@ exports.GetAll = function(req, res, next) {
 		if (error) res.send(error);
 		else {
 			res.send(found);
+		}
 	});
 }
 
