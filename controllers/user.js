@@ -70,3 +70,16 @@ exports.RecoverToken = function(req, res, next) {
 		token : req.user.token
 	});
 }
+
+// NEVER DO This
+exports.Destroy = function(req, res, next) {
+	Models.User.find({}, function(error, found) {
+		if (error) res.send(error);
+		else {
+			for (var i = 0; i < found.length; i++) {
+				found[i].remove();
+			}
+			res.send(200, utils.res("Removed all Users."));
+		}
+	});
+}
