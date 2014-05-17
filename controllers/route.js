@@ -12,7 +12,8 @@ exports.CreateRoute = function(req, res, next) {
 		if (error) util.error(error, res);
 		else {
 			if (saved) {
-				res.send(200, util.res("Route successfully created.", {
+				res.send(200, {
+					message : "Route successfully created."
 					route : saved.route,
 					model : saved.model
 				}));
@@ -23,6 +24,24 @@ exports.CreateRoute = function(req, res, next) {
 	});
 };
 
+exports.UpdateRoute = function(req, res, next) {
+	req.route.model = req.body.model;
+	req.route.save(function(error, saved) {
+		if (error) util.error(error, res);
+		else {
+			if (saved) {
+				res.send(200, {
+					message : "Route successfully updated.",
+					route : saved.route,
+					model : saved.model
+				}));
+			} else {
+				res.send(400, "Error. Please try again.");
+			}
+		}
+	});
+}
+
 exports.GetRoute = function(req, res, next) {
 	Models.Route.findOne({
 		route : req.params.route
@@ -30,6 +49,7 @@ exports.GetRoute = function(req, res, next) {
 		if (error) util.error(error, res);
 		else {
 			if (route) {
+				req.route = route;
 				req.model = route.model;
 				next();
 			} else {
