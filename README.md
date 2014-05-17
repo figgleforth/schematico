@@ -1,8 +1,8 @@
-###Schematico
+### Schematico
 
 Create placeholder API routes that return dummy data based on your own specifications.
 
-####How to use
+#### How to use
 
 First make a POST request with the desired URL like `http://bolygon.co:4999/myawesomeroute` and a body like:
 
@@ -31,3 +31,30 @@ Then whenever you need this model, just GET `http://bolygon.co:4999/myawesomerou
 ```
 
 The model can contain as many nested objects as you want. To get multiple objects back, just append `/<number>` to the API.
+
+#### Available Types
+
+* String
+* Word
+* Sentence
+* Paragraph
+* Number
+* Integer
+* -Integer
+* Boolean
+
+#### Todo
+
+* User accounts so that routes can be persistent, really basic auth.
+* More types
+  * Name
+  * Address
+  * Phone
+  * City
+  * State
+  * Country
+  * Continent
+  * Zip code
+  * Language
+  * Time
+  * Date
