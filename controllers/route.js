@@ -26,6 +26,7 @@ exports.CreateRoute = function(req, res, next) {
 
 exports.UpdateRoute = function(req, res, next) {
 	req.route.model = req.body.model;
+	console.log("req.route:" , req.route);
 	req.route.save(function(error) {
 		utils.error(error, res);
 		res.send(200, {
