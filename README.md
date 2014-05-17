@@ -4,12 +4,12 @@ Create placeholder API routes that return dummy data based on your own specifica
 
 ####How to use
 
-First make a POST request with the desired URL like `http://bolygon.co/schematico/myawesomeroute` and with a body like:
+First make a POST request with the desired URL like `http://bolygon.co/schematico/myawesomeroute` and a body like:
 
 ```javascript
 {
   "name" : "String",
-  "age" : "Integer"
+  "age" : "Integer",
   "location" : {
     "longitude" : "Number",
     "latitude" : "Number"
@@ -22,7 +22,7 @@ Then whenever you need this model, just GET `http://bolygon.co/schematico/myawes
 ```javascript
 {
   "name" : "Deserunt sunt minim reprehenderit enim ut Lorem.",
-  "age" : "26"
+  "age" : "26",
   "location" : {
     "longitude" : "342.123516143",
     "latitude" : "123.345634563"
