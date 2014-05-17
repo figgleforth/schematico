@@ -16,7 +16,7 @@ exports.CreateRoute = function(req, res, next) {
 					message : "Route successfully created.",
 					route : saved.route,
 					model : saved.model
-				}));
+				});
 			} else {
 				res.send(400, "Error. Please try again.");
 			}
@@ -34,7 +34,7 @@ exports.UpdateRoute = function(req, res, next) {
 					message : "Route successfully updated.",
 					route : saved.route,
 					model : saved.model
-				}));
+				});
 			} else {
 				res.send(400, "Error. Please try again.");
 			}
