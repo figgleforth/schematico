@@ -42,7 +42,7 @@ exports.GetRoute = function(req, res, next) {
 exports.PopulateModel = function(req, res, next) {
 	var data = [];
 	for (var i=0; i<(req.params.count || 1); i++) {
-		var dictionary = JSON.parse(JSON.stringify(model));
+		var dictionary = JSON.parse(JSON.stringify(req.model));
 		for (var key in dictionary) {
 			dictionary[key] = util.valueForKeyInDictionary(key, dictionary);
 		}
