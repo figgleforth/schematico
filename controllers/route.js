@@ -26,19 +26,13 @@ exports.CreateRoute = function(req, res, next) {
 
 exports.UpdateRoute = function(req, res, next) {
 	req.route.model = req.body.model;
-	req.route.save(function(error, saved) {
-		if (error) util.error(error, res);
-		else {
-			if (saved) {
-				res.send(200, {
-					message : "Route successfully updated.",
-					route : "/"+req.user.username+"/"+saved.route,
-					model : saved.model
-				});
-			} else {
-				res.send(400, "Error. Please try again.");
-			}
-		}
+	req.route.save(function(error) {
+		utils.error(error, res);
+		res.send(200, {
+			message : "Route successfully updated.",
+			route : "/"+req.user.username+"/"+saved.route,
+			model : saved.model
+		});
 	});
 }
 
