@@ -5,20 +5,6 @@ var Models = require("../models");
 var ObjectId = mongoose.Schema.Types.ObjectId;
 var chance = new require("chance")(function() { return Math.random(); });
 
-exports.UserForId = function(req, res, next) {
-	Models.User.findById(req.userId, function(error, found) {
-		if (error) res.send(error);
-		else {
-			if (found) {
-				req.user = found;
-				next();
-			} else {
-				res.send(400, utils.res("User does not exist for this userID."));
-			}
-		}
-	});
-}
-
 exports.CreateNewUser = function(req, res, next) {
 	var salt = bcrypt.genSaltSync(10);
 	var passhash = bcrypt.hashSync(req.body.password, salt);
@@ -30,8 +16,8 @@ exports.CreateNewUser = function(req, res, next) {
 	}).save(function(err, saved) {
 		if (err) { res.send(err); }
 		else {
-			req.token = saved.token;
-			utils.sendEmail(saved.email, "Schematico Account Created", "Your free account is now ready to use. Supply this token with all API calls to identify yourself: "+req.token);
+			req.user = saved;
+			utils.sendEmail(saved.email, "Schematico Account Created", "Your free account is now ready to use. Supply this token with all API calls to identify yourself: "+req.user.token);
 			next();
 		}
 	});
@@ -66,3 +52,10 @@ exports.CheckIfEmailExists = function(req, res, next) {
 		}
 	});
 };
+
+exports.RecoverToken = function(req, res, next) {
+	res.send(200, {
+		message : "This is your token, use it with all API calls.",
+		token : req.user.token
+	});
+}
