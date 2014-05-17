@@ -96,6 +96,8 @@ exports.ValidateToken = function(req, res, next) {
 }
 
 exports.ValidateUsernameAndToken = function(req, res, next) {
+	console.log("validating for: ", req.params.username);
+	console.log("with token: ", req.body.token);
 	Models.User.count({username:req.params.username, token:req.body.token}, function(error, count) {
 		if (count > 0) {
 			next();
