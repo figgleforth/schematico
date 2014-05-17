@@ -215,10 +215,10 @@ function _valueForKeyInDictionary(key, dictionary) {
 		return value;
 	} else if (typeof dictionary[key] === "object") {
 		if (Array.isArray(dictionary[key])) {
-			var subdictionary = dictionary[key][0];
-			if (subdictionary.length < 1) {
+			if (dictionary[key].length < 1) {
 				return [];
 			}
+			var subdictionary = dictionary[key][0];
 			var count = dictionary[key][1] ? dictionary[key][1] : (1 + Math.round(Math.random()*10));
 
 			var data = [];
