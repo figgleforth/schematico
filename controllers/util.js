@@ -232,10 +232,6 @@ function _valueForKeyInDictionary(key, dictionary) {
 			}
 			return data;
 		} else {
-			if (isEmpty(dictionary[key])) {
-				console.log("isEmpty! ", dictionary[key]);
-				return {};
-			}
 			var value = {};
 			for (var subkey in dictionary[key]) {
 				value[subkey] = _valueForKeyInDictionary(subkey, dictionary[key]);
