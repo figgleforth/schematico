@@ -18,7 +18,7 @@ exports.CreateNewUser = function(req, res, next) {
 		if (err) { res.send(err); }
 		else {
 			req.user = saved;
-			utils.sendEmail(saved.email, "Schematico Account Created", "Your free account is now ready to use. Supply this token with all API calls to identify yourself: "+req.user.token);
+			util.sendEmail(saved.email, "Schematico Account Created", "Your free account is now ready to use. Supply this token with all API calls to identify yourself: "+req.user.token);
 			next();
 		}
 	});
@@ -35,10 +35,10 @@ exports.Authenticate = function(req, res, next) {
 					req.user = user;
 					next();
 				} else {
-					res.send(400, utils.res("Password does not match the email."));
+					res.send(400, util.res("Password does not match the email."));
 				}
 			} else {
-				res.send(400, utils.res("User by that email doesn't exist."));
+				res.send(400, util.res("User by that email doesn't exist."));
 			}
 		}
 	});
@@ -47,7 +47,7 @@ exports.Authenticate = function(req, res, next) {
 exports.CheckIfEmailExists = function(req, res, next) {
 	Models.User.count({email:req.body.email}, function(error, count) {
 		if (count > 0) {
-			res.send(400, utils.res("That email is already in use."));
+			res.send(400, util.res("That email is already in use."));
 		} else {
 			next();
 		}
@@ -57,7 +57,7 @@ exports.CheckIfEmailExists = function(req, res, next) {
 exports.CheckIfUsernameExists = function(req, res, next) {
 	Models.User.count({username:req.body.username}, function(error, count) {
 		if (count > 0) {
-			res.send(400, utils.res("That username is already in use."));
+			res.send(400, util.res("That username is already in use."));
 		} else {
 			next();
 		}
@@ -79,7 +79,7 @@ exports.Destroy = function(req, res, next) {
 			for (var i = 0; i < found.length; i++) {
 				found[i].remove();
 			}
-			res.send(200, utilss.res("Removed all Users."));
+			res.send(200, util.res("Removed all Users."));
 		}
 	});
 }
