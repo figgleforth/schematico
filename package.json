@@ -3,6 +3,7 @@
   "dependencies": {
     "express": "^4.2.0",
     "body-parser": "^1.2.0",
-    "lorem-ipsum": "^1.0.1"
+    "lorem-ipsum": "^1.0.1",
+    "Faker": "~0.7.0"
   }
 }
