@@ -50,3 +50,16 @@ exports.PopulateModel = function(req, res, next) {
 	}
 	res.send(200, data);
 }
+
+// NEVER DO This
+exports.Destroy = function(req, res, next) {
+	Models.Route.find({}, function(error, found) {
+		if (error) res.send(error);
+		else {
+			for (var i = 0; i < found.length; i++) {
+				found[i].remove();
+			}
+			res.send(200, util.res("Removed all Users."));
+		}
+	});
+}

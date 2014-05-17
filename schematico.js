@@ -8,7 +8,8 @@ var modelsByRoute = {}; // temporary storage
 var UserController = require("./controllers/user");
 var RouteController = require("./controllers/route");
 
-app.get("/killall",		UserController.Destroy);
+app.get("/killall",		UserController.Destroy,
+						RouteController.Destroy);
 
 app.post("/recover",	UserController.Authenticate,
 						UserController.RecoverToken);
