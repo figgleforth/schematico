@@ -13,7 +13,7 @@ exports.CreateRoute = function(req, res, next) {
 		else {
 			if (saved) {
 				res.send(200, {
-					message : "Route successfully created."
+					message : "Route successfully created.",
 					route : saved.route,
 					model : saved.model
 				}));
