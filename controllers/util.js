@@ -244,8 +244,8 @@ exports.valueForKeyInDictionary = _valueForKeyInDictionary;
 var smtpTransport = nodemailer.createTransport("SMTP",{
     service: "Gmail",
     auth: {
-        user: "bpercevic@gmail.com",
-        pass: "rcowoedgmqlrnlap"
+        user: "schematico.co@gmail.com",
+        pass: "enfwlkkbvmtseqmp"
     }
 });
 
