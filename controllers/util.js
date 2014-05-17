@@ -235,6 +235,7 @@ function _valueForKeyInDictionary(key, dictionary) {
 			return data;
 		} else {
 			if (isEmpty(dictionary[key])) {
+				console.log("isEmpty! ", dictionary[key]);
 				return {};
 			}
 			var value = {};
