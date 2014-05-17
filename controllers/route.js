@@ -69,7 +69,7 @@ exports.Destroy = function(req, res, next) {
 			for (var i = 0; i < found.length; i++) {
 				found[i].remove();
 			}
-			res.send(200, util.res("Removed all Users."));
+			next();
 		}
 	});
 }

@@ -9,7 +9,10 @@ var UserController = require("./controllers/user");
 var RouteController = require("./controllers/route");
 
 app.get("/killall",		UserController.Destroy,
-						RouteController.Destroy);
+						RouteController.Destroy,
+						function(req, res) {
+							res.send(200, "Destroyed all Users and Routes.");
+						});
 
 app.post("/recover",	UserController.Authenticate,
 						UserController.RecoverToken);
