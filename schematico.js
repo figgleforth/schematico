@@ -6,11 +6,12 @@ var app = express().use(bodyParser.json({type:"application/json"}));
 var modelsByRoute = {};
 var units = ["words", "sentences", "paragraphs"];
 
-app.get("/:path/:count", function(req, res) {
+
+app.get("/:path/:count?", function(req, res) {
 	var model = modelsByRoute[req.params.path];
 	if (model) {
 		var data = [];
-		for (var i=0; i<req.params.count; i++) {
+		for (var i=0; i<(req.params.count || 1); i++) {
 			var instance = JSON.parse(JSON.stringify(model));
 			for (var key in instance) {
 				instance[key] = valueForKey(key, instance);
@@ -92,7 +93,7 @@ app.post("/:path", function(req, res) {
 			message : "Route is already defined. Make a PUT request to update."
 		});
 	} else {
-		modelsByRoute[req.params.path] = req.body.model;
+		modelsByRoute[req.params.path] = req.body;
 		res.send(200, {
 			message : "Route successfully created."
 		});
@@ -100,10 +101,10 @@ app.post("/:path", function(req, res) {
 });
 
 app.put("/:path", function(req, res) {
-	modelsByRoute[req.params.path] = req.body.model;
+	modelsByRoute[req.params.path] = req.body;
 	res.send(200, {
 		message : "Route successfully updated."
 	});
 });
 
-app.listen(process.env.PORT || 1337);
+app.listen(5000);
