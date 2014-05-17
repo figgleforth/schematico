@@ -1,3 +1,4 @@
+var mongoose = require("mongoose");
 var util = require("./util");
 var Models = require("../models");
 var ObjectId = mongoose.Schema.Types.ObjectId;
