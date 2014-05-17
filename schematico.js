@@ -26,8 +26,7 @@ app.get("/:username/:route/:count?",	UserController.ValidateUsername,
 										RouteController.GetRoute,
 										RouteController.PopulateModel);
 
-app.post("/:username/:route",	RouteController.CheckIfRouteExists,
-								UserController.ValidateUsernameAndToken,
+app.post("/:username/:route"	UserController.ValidateUsernameAndToken,
 								UserController.UserForToken,
 								RouteController.CheckIfRouteExists,
 								RouteController.CreateRoute);

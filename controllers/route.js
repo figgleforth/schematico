@@ -73,7 +73,7 @@ exports.GetRoute = function(req, res, next) {
 }
 
 exports.CheckIfRouteExists = function(req, res, next) {
-	Models.Route.find({route:req.params.route, userID:req.user._id}, function(error, count) {
+	Models.Route.find({route:req.params.route, userId:req.user._id}, function(error, count) {
 		if (count > 0) {
 			res.send(400, util.res("That route is already defined. Make a PUT request to update."));
 		} else {
