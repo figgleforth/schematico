@@ -8,10 +8,6 @@ if ('development' == env) {
 	app.set("views", __dirname + "/views");
 	app.set("view engine", "jade");
 	app.use(bodyParser.json({type:"application/json"}));
-	app.use(express.errorHandler({
-		dumpExceptions : true,
-		showStack : true
-	}));
 	app.use(stylus.middleware({
 		compress : true,
 		src : __dirname + "/public",
