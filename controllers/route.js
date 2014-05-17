@@ -14,7 +14,7 @@ exports.CreateRoute = function(req, res, next) {
 			if (saved) {
 				res.send(200, {
 					message : "Route successfully created.",
-					route : saved.route,
+					route : "/"+req.user.username+"/"+saved.route,
 					model : saved.model
 				});
 			} else {
@@ -32,7 +32,7 @@ exports.UpdateRoute = function(req, res, next) {
 			if (saved) {
 				res.send(200, {
 					message : "Route successfully updated.",
-					route : saved.route,
+					route : "/"+req.user.username+"/"+saved.route,
 					model : saved.model
 				});
 			} else {
