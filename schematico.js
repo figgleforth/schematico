@@ -6,6 +6,7 @@ util.connectToMongoDB("alpha");
 var modelsByRoute = {}; // temporary storage
 
 var UserController = require("./controllers/user");
+var RouteController = require("./controllers/route");
 
 app.get("/killall",		UserController.Destroy);
 
@@ -16,6 +17,15 @@ app.post("/signup",		UserController.CheckIfEmailExists,
 						UserController.CheckIfUsernameExists,
 						UserController.CreateNewUser,
 						UserController.RecoverToken);
+
+app.get("/:username/:route/:count?",	UserController.ValidateToken,
+										UserController.UserForToken,
+										RouteController.GetRoute,
+										RouteController.PopulateModel);
+
+app.post("/:username/:route",	UserController.ValidateToken,
+								UserController.UserForToken,
+								RouteController.CreateRoute);
 
 
 app.get("/:path/:count?", function(req, res) {

@@ -64,10 +64,34 @@ exports.CheckIfUsernameExists = function(req, res, next) {
 	});
 }
 
+exports.UserForToken = function(req, res, next) {
+	Models.User.findOne({token:req.body.token}, function(error, found) {
+		if (error) res.send(error);
+		else {
+			if (found) {
+				req.user = found;
+				next();
+			} else {
+				res.send(400, utils.res("User does not exist for this userID."));
+			}
+		}
+	});
+}
+
 exports.RecoverToken = function(req, res, next) {
 	res.send(200, {
 		message : "This is your token, use it with all API calls.",
 		token : req.user.token
+	});
+}
+
+exports.ValidateToken = function(req, res, next) {
+	Models.User.count({token:req.body.token}, function(error, count) {
+		if (count > 0) {
+			next();
+		} else {
+			res.send(400, util.res("That token does not exist. You may need to recover your token, or you may not be signed up."));
+		}
 	});
 }
 
