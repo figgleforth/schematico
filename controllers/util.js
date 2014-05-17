@@ -287,8 +287,11 @@ exports.error = function(error, res) {
 }
 
 exports.res = function(message, data) {
-	return {
-		message : message,
-		data : data || {}
+	var retVal = {
+		message : message
 	};
+	if (data) {
+		retVal[data] = data;
+	}
+	return retVal;
 }
