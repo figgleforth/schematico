@@ -61,6 +61,9 @@ function valueForKey(key, dictionary) {
 			case "Number":
 				value = Math.random()*1000;
 				break;
+			case "-Number":
+				value = (Math.random()*1000) * -1;
+				break;
 			case "Integer" :
 				value = Math.round(Math.random()*1000);
 				break;
