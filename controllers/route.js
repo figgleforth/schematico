@@ -25,15 +25,27 @@ exports.CreateRoute = function(req, res, next) {
 };
 
 exports.UpdateRoute = function(req, res, next) {
-	req.route.model = req.body.model;
-	console.log("req.route:" , req.route);
-	req.route.save(function(error) {
-		utils.error(error, res);
-		res.send(200, {
-			message : "Route successfully updated.",
-			route : "/"+req.user.username+"/"+saved.route,
-			model : saved.model
-		});
+	Models.Route.findOne({
+		route : req.params.route
+	}, function(error, route) {
+		if (error) util.error(error, res);
+		else {
+			if (route) {
+				route.model = req.body.model
+				route.save(function(error) {
+					if (error) res.send(error);
+					else {
+						res.send(200, {
+							message : "Route successfully updated.",
+							route : "/"+req.user.username+"/"+route.route,
+							model : route.model
+						});
+					}
+				});
+			} else {
+				res.send(400, uril.res("That route is not defined."));
+			}
+		}
 	});
 }
 
