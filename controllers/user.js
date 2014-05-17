@@ -1,6 +1,6 @@
 var mongoose = require("mongoose");
 var bcrypt = require("bcrypt");
-var utils = require("./utils");
+var util = require("./util");
 var Models = require("../models");
 var ObjectId = mongoose.Schema.Types.ObjectId;
 var chance = new require("chance")(function() { return Math.random(); });
@@ -79,7 +79,7 @@ exports.Destroy = function(req, res, next) {
 			for (var i = 0; i < found.length; i++) {
 				found[i].remove();
 			}
-			res.send(200, utils.res("Removed all Users."));
+			res.send(200, utilss.res("Removed all Users."));
 		}
 	});
 }
