@@ -39,6 +39,7 @@ The model can contain as many nested objects as you want. To get multiple object
 * Sentence
 * Paragraph
 * Number
+* -Number
 * Integer
 * -Integer
 * Boolean
