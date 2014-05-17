@@ -4,7 +4,7 @@ Create placeholder API routes that return dummy data based on your own specifica
 
 ####How to use
 
-First make a POST request with the desired URL like `http://bolygon.co/schematico/myawesomeroute` and a body like:
+First make a POST request with the desired URL like `http://bolygon.co:4999/myawesomeroute` and a body like:
 
 ```javascript
 {
@@ -17,7 +17,7 @@ First make a POST request with the desired URL like `http://bolygon.co/schematic
 }
 ```
 
-Then whenever you need this model, just GET `http://bolygon.co/schematico/myawesomeroute` and you'll get back an object like:
+Then whenever you need this model, just GET `http://bolygon.co:4999/myawesomeroute` and you'll get back an object like:
 
 ```javascript
 {
