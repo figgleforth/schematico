@@ -21,6 +21,10 @@ var modelsByRoute = {}; // temporary storage
 var UserController = require("./controllers/user");
 var RouteController = require("./controllers/route");
 
+app.get("/", function(req, res) {
+	res.render("index");
+});
+
 app.get("/killall",		UserController.Destroy,
 						RouteController.Destroy,
 						function(req, res) {
