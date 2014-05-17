@@ -26,7 +26,8 @@ app.get("/:username/:route/:count?",	UserController.ValidateUsername,
 										RouteController.GetRoute,
 										RouteController.PopulateModel);
 
-app.post("/:username/:route",	UserController.ValidateUsernameAndToken,
+app.post("/:username/:route",	RouteController.CheckIfRouteExists,
+								UserController.ValidateUsernameAndToken,
 								UserController.UserForToken,
 								RouteController.CheckIfRouteExists,
 								RouteController.CreateRoute);
@@ -34,46 +35,5 @@ app.post("/:username/:route",	UserController.ValidateUsernameAndToken,
 app.put("/:username/:route",	UserController.ValidateUsernameAndToken,
 								UserController.UserForToken,
 								RouteController.UpdateRoute);
-
-
-// app.get("/:path/:count?", function(req, res) {
-// 	var model = modelsByRoute[req.params.path];
-// 	if (model) {
-// 		var data = [];
-// 		for (var i=0; i<(req.params.count || 1); i++) {
-// 			var dictionary = JSON.parse(JSON.stringify(model));
-// 			for (var key in dictionary) {
-// 				dictionary[key] = util.valueForKeyInDictionary(key, dictionary);
-// 			}
-// 			data.push(dictionary);
-// 		}
-// 		res.send(200, data);
-// 	} else {
-// 		res.send(400, {
-// 			message : "Route is undefined."
-// 		});
-// 	}
-// });
-
-// app.post("/:path", function(req, res) {
-// 	var model = modelsByRoute[req.params.path];
-// 	if (model) {
-// 		res.send(400, {
-// 			message : "Route is already defined. Make a PUT request to update."
-// 		});
-// 	} else {
-// 		modelsByRoute[req.params.path] = req.body;
-// 		res.send(200, {
-// 			message : "Route successfully created."
-// 		});
-// 	}
-// });
-
-// app.put("/:path", function(req, res) {
-// 	modelsByRoute[req.params.path] = req.body;
-// 	res.send(200, {
-// 		message : "Route successfully updated."
-// 	});
-// });
 
 app.listen(5000);
