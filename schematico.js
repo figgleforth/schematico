@@ -22,6 +22,10 @@ app.post("/signup",		UserController.CheckIfEmailExists,
 						UserController.CreateNewUser,
 						UserController.RecoverToken);
 
+app.get("/:username/routes",	UserController.UserForUsername,
+								RouteController.GetRoutes);
+
+
 app.get("/:username/:route/:count?",	UserController.ValidateUsername,
 										RouteController.GetRoute,
 										RouteController.PopulateModel);

@@ -72,6 +72,14 @@ exports.GetRoute = function(req, res, next) {
 	});
 }
 
+exports.GetRoutes = function(req, res, next) {
+	if (req.user) {
+		res.send(200, req.user.routes);
+	} else {
+		res send(400);
+	}
+}
+
 exports.CheckIfRouteExists = function(req, res, next) {
 	console.log("check existance for: ", req.params.route);
 	console.log("for: ", req.user);

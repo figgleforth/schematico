@@ -115,6 +115,17 @@ exports.ValidateUsernameAndToken = function(req, res, next) {
 	});
 }
 
+exports.UserForUsername = function(req, res, next) {
+	Models.User.findOne({username:req.params.username}, function(error, found) {
+		if (found) {
+			req.user = found;
+			next();
+		} else {
+			res.send(400, util.res("That user does not exist."));
+		}
+	});
+}
+
 // NEVER DO This
 exports.Destroy = function(req, res, next) {
 	Models.User.find({}, function(error, found) {
