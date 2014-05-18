@@ -39,13 +39,14 @@ app.post("/signup",				UserController.CheckIfEmailExists,
 app.post("/recover",			UserController.Authenticate,
 								UserController.RecoverToken);
 
-// app.get("/routes",				RouteController.GetAllRoutesEverCreated);
-
-// app.get("/:username/routes",	UserController.UserForUsername,
-								// RouteController.GetRoutes);
-
-
 // Product API //
+app.get("/:username/routes",	UserController.UserForUsername,
+								RouteController.GetRoutes);
+
+// delete account by providing email and password
+
+
+
 /**
 	@param username		person's username
 	@query token 		token required to make API calls

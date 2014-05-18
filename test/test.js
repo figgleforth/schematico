@@ -184,32 +184,4 @@ describe("API", function() {
 			done();
 		});
 	});
-
-	// it("Update a route without token should return 400", function(done) {
-	// 	request(app).put("/"+_username+"/"+_route).send({
-	// 		"name" : "Name",
-	// 		"phone" : "Phone"
-	// 	}).expect(200).end(function(error, res) {
-	// 		done();
-	// 	});
-	// });
-
-	// it("Update a route with token should return 200", function(done) {
-	// 	request(app).put("/"+_username+"/"+_route+"?token="+_newUserToken).send({
-	// 		"name" : "Name",
-	// 		"phone" : "Phone"
-	// 	}).expect(200).end(function(error, res) {
-	// 		done();
-	// 	});
-	// });
-
-	// it("Delete user without passing token should return 400", function(done) {
-	// 	request(app).del("/userByToken")
-	// 	.expect(400, done);
-	// });
-
-	// it("Delete user with the token should return 200", function(done) {
-	// 	request(app).delete("/userByToken?token="+_newUserToken)
-	// 	.expect(200, done);
-	// });
 });

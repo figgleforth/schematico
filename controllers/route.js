@@ -86,7 +86,19 @@ exports.GetRoute = function(req, res, next) {
 
 exports.GetRoutes = function(req, res, next) {
 	if (req.user) {
-		res.send(200, req.user.routes);
+		Models.Route.find({_id : req.user.routes}, function(error, found) {
+			if (error) util.error(error, res);
+			else {
+				if (found) {
+					found = found.map(function(route) {
+						return route.route;
+					});
+					res.send(200, found);
+				} else {
+					res.send(400, "This user has no routes.");
+				}
+			}
+		});
 	} else {
 		res.send(400);
 	}
