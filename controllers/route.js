@@ -37,7 +37,7 @@ exports.UpdateRoute = function(req, res, next) {
 		if (error) util.error(error, res);
 		else {
 			if (route) {
-				route.model = req.body.model
+				route.model = req.body
 				route.save(function(error) {
 					if (error) res.send(error);
 					else {

@@ -52,6 +52,7 @@ app.get("/:username/:route",	UserController.UserForUsername,
 								RouteController.GetRoute,
 								RouteController.PopulateModel);
 
+// done
 // /username/route?token=abcdef
 // body is the model
 app.post("/:username/:route",	UserController.UserForUsername,
@@ -60,8 +61,9 @@ app.post("/:username/:route",	UserController.UserForUsername,
 								RouteController.CreateRoute);
 
 // /username/route?token=abcdef
-app.put("/:username/:route",	UserController.ValidateUsernameAndToken,
-								UserController.UserForToken,
+// body is the new model
+app.put("/:username/:route",	UserController.UserForUsername,
+								UserController.ValidateTokenInQuery,
 								RouteController.UpdateRoute);
 
 app.listen(5000);
