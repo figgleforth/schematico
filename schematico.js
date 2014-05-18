@@ -76,3 +76,4 @@ app.put("/:username/:route",	UserController.UserForUsername,
 
 
 app.listen(5000);
+exports.app = app;
