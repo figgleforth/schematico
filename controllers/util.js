@@ -295,7 +295,7 @@ exports.connectToMongoDB = function(address, name) {
 		console.log("Mongo database '"+name+"' connection FAIL.", error);
 	});
 	mongoose.connection.on("open", function() {
-		console.log("Mongo database '"+name+"' connection OK.");
+		// console.log("Mongo database '"+name+"' connection OK.");
 	});
 }
 
