@@ -3,8 +3,16 @@ var util = require("./util");
 var Models = require("../models");
 var ObjectId = mongoose.Schema.Types.ObjectId;
 
+function isEmpty(obj) {
+	for(var key in obj) {
+		if(obj.hasOwnProperty(key))
+			return false;
+	}
+	return true;
+}
+
 exports.CreateRoute = function(req, res, next) {
-	if (util.isEmpty(req.body)) {
+	if (isEmpty(req.body)) {
 		res.send(400, "You need to define a schema for this route.");
 	} else {
 		new Models.Route({
