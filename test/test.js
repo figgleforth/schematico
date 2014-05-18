@@ -37,70 +37,71 @@ describe("API", function() {
 		}).expect(400).end(function(error, res) {
 			assert.notEqual(res.body.token, 1, "Token is undefined.");
 			_newUserToken = res.body.token;
+			if (err) return done(err);
 			done();
 		});
 	});
 
-	it("Create new user again should return 400", function(done) {
-		supertest(app).post("/signup").send({
-			email : "example@example.com",
-			username : "example",
-			password : "example"
-		}).expect(400).end(function(error, res) {
-			assert.equal(res.body.token, undefined, "Token is undefined.");
-			done();
-		});
-	});
+	// it("Create new user again should return 400", function(done) {
+	// 	supertest(app).post("/signup").send({
+	// 		email : "example@example.com",
+	// 		username : "example",
+	// 		password : "example"
+	// 	}).expect(400).end(function(error, res) {
+	// 		assert.equal(res.body.token, undefined, "Token is undefined.");
+	// 		done();
+	// 	});
+	// });
 
-	it("Create a new route without schema should return 400", function(done) {
-		supertest(app).post("/"+_username+"/"+_route).expect(400).end(function(error, res) {
-			done();
-		});
-	});
+	// it("Create a new route without schema should return 400", function(done) {
+	// 	supertest(app).post("/"+_username+"/"+_route).expect(400).end(function(error, res) {
+	// 		done();
+	// 	});
+	// });
 
-	it("Create a new route with improper schema JSON should return 400", function(done) {
-		supertest(app).post("/"+_username+"/"+_route).send({
-			name : "Name",
-			"phone" : "Phone"
-		}).expect(200).end(function(error, res) {
-			done();
-		});
-	});
+	// it("Create a new route with improper schema JSON should return 400", function(done) {
+	// 	supertest(app).post("/"+_username+"/"+_route).send({
+	// 		name : "Name",
+	// 		"phone" : "Phone"
+	// 	}).expect(200).end(function(error, res) {
+	// 		done();
+	// 	});
+	// });
 
-	it("Create a new route with proper schema JSON should return 201", function(done) {
-		supertest(app).post("/"+_username+"/"+_route).send({
-			"name" : "Name",
-			"phone" : "Phone"
-		}).expect(201).end(function(error, res) {
-			done();
-		});
-	});
+	// it("Create a new route with proper schema JSON should return 201", function(done) {
+	// 	supertest(app).post("/"+_username+"/"+_route).send({
+	// 		"name" : "Name",
+	// 		"phone" : "Phone"
+	// 	}).expect(201).end(function(error, res) {
+	// 		done();
+	// 	});
+	// });
 
-	it("Update a route without token should return 400", function(done) {
-		supertest(app).put("/"+_username+"/"+_route).send({
-			"name" : "Name",
-			"phone" : "Phone"
-		}).expect(200).end(function(error, res) {
-			done();
-		});
-	});
+	// it("Update a route without token should return 400", function(done) {
+	// 	supertest(app).put("/"+_username+"/"+_route).send({
+	// 		"name" : "Name",
+	// 		"phone" : "Phone"
+	// 	}).expect(200).end(function(error, res) {
+	// 		done();
+	// 	});
+	// });
 
-	it("Update a route with token should return 200", function(done) {
-		supertest(app).put("/"+_username+"/"+_route+"?token="+_newUserToken).send({
-			"name" : "Name",
-			"phone" : "Phone"
-		}).expect(200).end(function(error, res) {
-			done();
-		});
-	});
+	// it("Update a route with token should return 200", function(done) {
+	// 	supertest(app).put("/"+_username+"/"+_route+"?token="+_newUserToken).send({
+	// 		"name" : "Name",
+	// 		"phone" : "Phone"
+	// 	}).expect(200).end(function(error, res) {
+	// 		done();
+	// 	});
+	// });
 
-	it("Delete user without passing token should return 400", function(done) {
-		supertest(app).del("/userByToken")
-		.expect(400, done);
-	});
+	// it("Delete user without passing token should return 400", function(done) {
+	// 	supertest(app).del("/userByToken")
+	// 	.expect(400, done);
+	// });
 
-	it("Delete user with the token should return 200", function(done) {
-		supertest(app).delete("/userByToken?token="+_newUserToken)
-		.expect(200, done);
-	});
+	// it("Delete user with the token should return 200", function(done) {
+	// 	supertest(app).delete("/userByToken?token="+_newUserToken)
+	// 	.expect(200, done);
+	// });
 });
