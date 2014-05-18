@@ -184,4 +184,28 @@ describe("API", function() {
 			done();
 		});
 	});
+
+	it("Get a list of all routes for this user, the list count should be 1", function(done) {
+		request(app)
+		.get("/"+_username+"/routes")
+		.set("Content-Type", "application/json")
+		.send(badCredentials)
+		.end(function(error, res) {
+			res.body.should.be.instanceof(Array).and.have.lengthOf(1);
+			done();
+		});
+	});
+
+
 });
+
+
+
+
+
+
+
+
+
+
+
