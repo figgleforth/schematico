@@ -45,19 +45,23 @@ describe("API", function() {
 			res.should.have.status(201);
 			done();
 		});
+	});
 
+	it("Create the same user should return 400", function(done) {
+		var newUser = {
+			email : "example@email.com",
+			username : "example",
+			password : "example"
+		}
 
-
-		// request(app).post("/signup").send({
-		// 	email : "example@example.com",
-		// 	username : _username,
-		// 	password : "example"
-		// }).expect(400).end(function(error, res) {
-		// 	assert.notEqual(res.body.token, 1, "Token is undefined.");
-		// 	_newUserToken = res.body.token;
-		// 	if (error) return done(error);
-		// 	done();
-		// });
+		request(app)
+		.post("/signup")
+		.set("Content-Type", "application/json")
+		.send(newUser)
+		.end(function(error, res) {
+			res.should.have.status(400);
+			done();
+		});
 	});
 
 	// it("Create new user again should return 400", function(done) {
