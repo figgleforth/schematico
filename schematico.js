@@ -19,6 +19,15 @@ if ('development' == env) {
 }
 util.connectToMongoDB("alpha");
 
+// Testing
+app.get("/200", function(req, res) {
+	res.send(200);
+});
+
+app.get("/400", function(req, res) {
+	res.send(400);
+});
+
 // Static Pages //
 app.get("/", function(req, res) {
 	res.render("index");
