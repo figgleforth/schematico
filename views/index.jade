@@ -207,12 +207,12 @@ block body
 				.code
 					.t0 POST http://schematico.co/your_username/your_route?token=your_token
 					br
-					.t0 { ... your_new_model ... }
+					.t0 BODY { ... your_new_model ... }
 				h3 updating a route
 				.code
 					.t0 PUT http://schematico.co/your_username/your_route?token=your_token
 					br
-					.t0 { ... your_updated_model ... }
+					.t0 BODY { ... your_updated_model ... }
 				//- p Getting data requires a POST request because we need to be able to identity you as the caller. We don't want other people making API calls on your behalf.
 				h3 getting data &dash; one object
 				.code
