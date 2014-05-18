@@ -41,10 +41,10 @@ describe("API", function() {
 		.post("/signup")
 		.set("Content-Type", "application/json")
 		.send(newUser)
-		.end(function(error, res) {
+		.end(function(error, res, body, body) {
 			res.should.have.status(201);
-			res.should.have.property("token");
-			_newUserToken = res.token;
+			body.should.have.property("token");
+			_newUserToken = body.token;
 			done();
 		});
 	});
@@ -60,7 +60,7 @@ describe("API", function() {
 		.post("/signup")
 		.set("Content-Type", "application/json")
 		.send(newUser)
-		.end(function(error, res) {
+		.end(function(error, res, body) {
 			res.should.have.status(400);
 			done();
 		});
@@ -70,7 +70,7 @@ describe("API", function() {
 		request(app)
 		.post("/"+_username+"/"+_route)
 		.set("Content-Type", "application/json")
-		.end(function(error, res) {
+		.end(function(error, res, body) {
 			res.should.have.status(400);
 			done();
 		});
@@ -80,7 +80,7 @@ describe("API", function() {
 		request(app)
 		.post("/"+_username+"/"+_route+"?token="+_newUserToken)
 		.set("Content-Type", "application/json")
-		.end(function(error, res) {
+		.end(function(error, res, body) {
 			res.should.have.status(400);
 			done();
 		});
@@ -96,7 +96,7 @@ describe("API", function() {
 		.post("/"+_username+"/"+_route)
 		.set("Content-Type", "application/json")
 		.send(newSchema)
-		.end(function(error, res) {
+		.end(function(error, res, body) {
 			res.should.have.status(400);
 			done();
 		});
@@ -112,7 +112,7 @@ describe("API", function() {
 		.post("/"+_username+"/"+_route+"?token="+_newUserToken)
 		.set("Content-Type", "application/json")
 		.send(newSchema)
-		.end(function(error, res) {
+		.end(function(error, res, body) {
 			res.should.have.status(201);
 			done();
 		});
@@ -122,7 +122,7 @@ describe("API", function() {
 	// 	request(app).put("/"+_username+"/"+_route).send({
 	// 		"name" : "Name",
 	// 		"phone" : "Phone"
-	// 	}).expect(200).end(function(error, res) {
+	// 	}).expect(200).end(function(error, res, body) {
 	// 		done();
 	// 	});
 	// });
@@ -131,7 +131,7 @@ describe("API", function() {
 	// 	request(app).put("/"+_username+"/"+_route+"?token="+_newUserToken).send({
 	// 		"name" : "Name",
 	// 		"phone" : "Phone"
-	// 	}).expect(200).end(function(error, res) {
+	// 	}).expect(200).end(function(error, res, body) {
 	// 		done();
 	// 	});
 	// });
