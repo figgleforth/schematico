@@ -41,89 +41,88 @@ describe("API", function() {
 		.post("/signup")
 		.set("Content-Type", "application/json")
 		.send(newUser)
-		.end(function(error, res, body) {
+		.end(function(error, res) {
 			res.should.have.status(201);
 			res.body.should.have.property("token");
 			_newUserToken = res.body.token;
-			res.body.should.have.property("tokens");
 			done();
 		});
 	});
 
-	// it("Create the same user should return 400", function(done) {
-	// 	var newUser = {
-	// 		email : "example@email.com",
-	// 		username : _username,
-	// 		password : "example"
-	// 	}
+	it("Create the same user should return 400", function(done) {
+		var newUser = {
+			email : "example@email.com",
+			username : _username,
+			password : "example"
+		}
 
-	// 	request(app)
-	// 	.post("/signup")
-	// 	.set("Content-Type", "application/json")
-	// 	.send(newUser)
-	// 	.end(function(error, res, body) {
-	// 		res.should.have.status(400);
-	// 		done();
-	// 	});
-	// });
+		request(app)
+		.post("/signup")
+		.set("Content-Type", "application/json")
+		.send(newUser)
+		.end(function(error, res) {
+			res.should.have.status(400);
+			done();
+		});
+	});
 
-	// it("Creating a new route without a schema and without token should return 400", function(done) {
-	// 	request(app)
-	// 	.post("/"+_username+"/"+_route)
-	// 	.set("Content-Type", "application/json")
-	// 	.end(function(error, res, body) {
-	// 		res.should.have.status(400);
-	// 		done();
-	// 	});
-	// });
+	it("Creating a new route without a schema and without token should return 400", function(done) {
+		request(app)
+		.post("/"+_username+"/"+_route)
+		.set("Content-Type", "application/json")
+		.end(function(error, res) {
+			res.should.have.status(400);
+			done();
+		});
+	});
 
-	// it("Creating a new route without a schema and with token should return 400", function(done) {
-	// 	request(app)
-	// 	.post("/"+_username+"/"+_route+"?token="+_newUserToken)
-	// 	.set("Content-Type", "application/json")
-	// 	.end(function(error, res, body) {
-	// 		res.should.have.status(400);
-	// 		done();
-	// 	});
-	// });
+	it("Creating a new route without a schema and with token should return 400", function(done) {
+		request(app)
+		.post("/"+_username+"/"+_route+"?token="+_newUserToken)
+		.set("Content-Type", "application/json")
+		.end(function(error, res) {
+			res.should.have.status(400);
+			done();
+		});
+	});
 
-	// it("Creating a new route with a schema and without token should return 400", function(done) {
-	// 	var newSchema = {
-	// 		name : "Name",
-	// 		email : "Email"
-	// 	}
+	it("Creating a new route with a schema and without token should return 400", function(done) {
+		var newSchema = {
+			name : "Name",
+			email : "Email"
+		}
 
-	// 	request(app)
-	// 	.post("/"+_username+"/"+_route)
-	// 	.set("Content-Type", "application/json")
-	// 	.send(newSchema)
-	// 	.end(function(error, res, body) {
-	// 		res.should.have.status(400);
-	// 		done();
-	// 	});
-	// });
+		request(app)
+		.post("/"+_username+"/"+_route)
+		.set("Content-Type", "application/json")
+		.send(newSchema)
+		.end(function(error, res) {
+			res.should.have.status(400);
+			done();
+		});
+	});
 
-	// it("Creating a new route with a schema and with token should return 201", function(done) {
-	// 	var newSchema = {
-	// 		name : "Name",
-	// 		email : "Email"
-	// 	}
+	it("Creating a new route with a schema and with token should return 201", function(done) {
+		var newSchema = {
+			name : "Name",
+			email : "Email"
+		}
 
-	// 	request(app)
-	// 	.post("/"+_username+"/"+_route+"?token="+_newUserToken)
-	// 	.set("Content-Type", "application/json")
-	// 	.send(newSchema)
-	// 	.end(function(error, res, body) {
-	// 		res.should.have.status(201);
-	// 		done();
-	// 	});
-	// });
+		request(app)
+		.post("/"+_username+"/"+_route+"?token="+_newUserToken)
+		.set("Content-Type", "application/json")
+		.send(newSchema)
+		.end(function(error, res) {
+			res.should.have.status(201);
+			done();
+		});
+	});
 
 	// it("Update a route without token should return 400", function(done) {
 	// 	request(app).put("/"+_username+"/"+_route).send({
 	// 		"name" : "Name",
 	// 		"phone" : "Phone"
-	// 	}).expect(200).end(function(error, res, body) {
+	// 	}).expect(200).end(function(error, res) {
 	// 		done();
 	// 	});
 	// });
@@ -132,7 +131,7 @@ describe("API", function() {
 	// 	request(app).put("/"+_username+"/"+_route+"?token="+_newUserToken).send({
 	// 		"name" : "Name",
 	// 		"phone" : "Phone"
-	// 	}).expect(200).end(function(error, res, body) {
+	// 	}).expect(200).end(function(error, res) {
 	// 		done();
 	// 	});
 	// });
