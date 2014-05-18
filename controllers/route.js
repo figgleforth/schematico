@@ -91,15 +91,23 @@ exports.CheckIfRouteExists = function(req, res, next) {
 }
 
 exports.PopulateModel = function(req, res, next) {
-	var data = [];
-	for (var i=0; i<(req.query.count || 1); i++) {
+	if (req.query.count) {
+		var data = [];
+		for (var i=0; i<(req.query.count || 1); i++) {
+			var dictionary = JSON.parse(JSON.stringify(req.model));
+			for (var key in dictionary) {
+				dictionary[key] = util.valueForKeyInDictionary(key, dictionary);
+			}
+			data.push(dictionary);
+		}
+		res.send(200, data);
+	} else {
 		var dictionary = JSON.parse(JSON.stringify(req.model));
 		for (var key in dictionary) {
 			dictionary[key] = util.valueForKeyInDictionary(key, dictionary);
 		}
-		data.push(dictionary);
+		res.send(200, dictionary);
 	}
-	res.send(200, data);
 }
 
 // NEVER DO This
