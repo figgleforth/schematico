@@ -132,16 +132,17 @@ exports.UserForUsername = function(req, res, next) {
 exports.DestroyByToken = function(req, res, next) {
 	if (!req.query.token) {
 		res.send(400);
-	}
-	Models.User.find({token : req.query.token}, function(error, found) {
-		if (error) res.send(error);
-		else {
-			for (var i = 0; i < found.length; i++) {
-				found[i].remove();
+	} else {
+		Models.User.find({token : req.query.token}, function(error, found) {
+			if (error) res.send(error);
+			else {
+				for (var i = 0; i < found.length; i++) {
+					found[i].remove();
+				}
+				res.send(200);
 			}
-			next();
-		}
-	});
+		});
+	}
 }
 
 exports.Destroy = function(req, res, next) {
