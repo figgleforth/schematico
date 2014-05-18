@@ -60,7 +60,7 @@ describe("API", function() {
 		.send(newUser)
 		.end(function(error, res) {
 			res.should.have.status(400);
-			_newUserToken = res.token;)
+			_newUserToken = res.token;
 			done();
 		});
 	});
