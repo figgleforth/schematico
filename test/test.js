@@ -65,7 +65,7 @@ describe("API", function() {
 		});
 	});
 
-	it("Creating a new route without a schema or token should return 400", function(done) {
+	it("Creating a new route without a schema and without token should return 400", function(done) {
 		request(app)
 		.post("/"+_username+"/"+_route)
 		.set("Content-Type", "application/json")
@@ -75,10 +75,26 @@ describe("API", function() {
 		});
 	});
 
-	it("Creating a new route without a schema but with token should return 400", function(done) {
+	it("Creating a new route without a schema and with token should return 400", function(done) {
 		request(app)
 		.post("/"+_username+"/"+_route+"?token="+_newUserToken)
 		.set("Content-Type", "application/json")
+		.end(function(error, res) {
+			res.should.have.status(400);
+			done();
+		});
+	});
+
+	it("Creating a new route with a schema and without token should return 400", function(done) {
+		var newSchema = {
+			name : "Name",
+			email : "Email"
+		}
+
+		request(app)
+		.post("/"+_username+"/"+_route)
+		.set("Content-Type", "application/json")
+		.send(newSchema)
 		.end(function(error, res) {
 			res.should.have.status(400);
 			done();
@@ -96,7 +112,7 @@ describe("API", function() {
 		.set("Content-Type", "application/json")
 		.send(newSchema)
 		.end(function(error, res) {
-			res.should.have.status(400);
+			res.should.have.status(201);
 			done();
 		});
 	});
