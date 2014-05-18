@@ -10,8 +10,8 @@ block body
 	.center#body
 		.row
 			.col12
-				h2 Dynamic Data Generation
-				p Data is valuable for testing your application or web service, but hard to come by. Schematico allows you create custom schemas and populate them with random data. Schematico is a placeholder API and model data generator.
+				h2 Placeholder API and Data
+				p API routes that return randomly generated data according to a schema that you define. Just create your route and schema one time, and Schematico will remember them. Schematico is placeholder API and schema, with advanced data generation.
 				h2 Contextual Data
 				p Schematico knows what kind of data you are looking for and delivers realistic results. Choose from over 50 different data types &dash; from personal data, to financial, social, and numerical data &dash; and much more.
 
@@ -23,13 +23,13 @@ block body
 					.t1 	name : {
 					.t2 		first : "FirstName",
 					.t2 		last : "LastName"
-					.t1 	}
+					.t1 	},
 					.t1 	phone : "Phone",
 					.t1 	email : "Email",
 					.t1 	address : {
 					.t2 		street : "Street",
 					.t2 		city : "City",
-					.t2 		state : "State"
+					.t2 		state : "State",
 					.t2 		zip : "Zip",
 					.t1 	}
 					.t0 }
@@ -41,13 +41,13 @@ block body
 					.t1 	name : {
 					.t2 		first : "John",
 					.t2 		last : "Smith"
-					.t1 	}
+					.t1 	},
 					.t1 	phone : "(417) 934-4467",
 					.t1 	email : "mibomu@ibevajoh.io",
 					.t1 	address : {
 					.t2 		street : "Rolla Drive",
 					.t2 		city : "Buffalo",
-					.t2 		state : "NY"
+					.t2 		state : "NY",
 					.t2 		zip : "14221",
 					.t1 	}
 					.t0 }
@@ -123,79 +123,67 @@ block body
 		.row.code-block
 			.col6
 				.code.request
-					.t0 Basic
-					.t1 	Number
-					.t1 	-Number (Negative)
-					.t1 	?Number (Positive or Negative)
-					.t1 	Integer
-					.t1 	-Integer (Negative)
-					.t1 	?Integer (Positive or Negative)
-					.t1 	Boolean
-					.t1 	Character
-					br
-					.t0 Personal
-					.t1 	Name
-					.t1 	FirstName
-					.t1 	LastName
-					.t1 	Gender
-					.t1 	Birthday
-					.t1 	Age
-					.t1 	Address
-					.t1 	Zip
-					.t1 	City
-					.t1 	Street
-					.t1 	State
-					.t1 	LongState
-					.t1 	Coordinates
-					.t1 	Latitude
-					.t1 	Longitude
-					.t1 	AreaCode
-					.t1 	Phone
-					.t1 	Email
-					.t1 	Company
-					br
-					.t0 Miscellaneous
-					.t1 	HexColor
-					.t1 	RGBColor
-					.t1 	Hash
-					.t1 	GUID
+					.t0 	Number
+					.t0 	-Number (Negative)
+					.t0 	?Number (Positive or Negative)
+					.t0 	Integer
+					.t0 	-Integer (Negative)
+					.t0 	?Integer (Positive or Negative)
+					.t0 	Boolean
+					.t0 	Character
+					.t0 	Name
+					.t0 	FirstName
+					.t0 	LastName
+					.t0 	Gender
+					.t0 	Birthday
+					.t0 	Age
+					.t0 	Address
+					.t0 	Zip
+					.t0 	City
+					.t0 	Street
+					.t0 	State
+					.t0 	LongState
+					.t0 	Coordinates
+					.t0 	Latitude
+					.t0 	Longitude
+					.t0 	AreaCode
+					.t0 	Phone
+					.t0 	Company
+					.t0 	HexColor
+					.t0 	RGBColor
+					.t0 	Hash
+					.t0 	GUID
 			.col6
 				.code.response
-					.t0 Financial
-					.t1 	Dollar
-					.t1 	CreditCardNumber
-					.t1 	CreditCardType
-					.t1 	CreditCardExpiration
-					.t1 	CreditCardExpirationMonth
-					.t1 	CreditCardExpirationYear
-					br
-					.t0 Internet
-					.t1 	Username
-					.t1 	Domain
-					.t1 	TLD
-					.t1 	IP
-					.t1 	IPv6
-					.t1 	Avatar
-					.t1 	FacebookID
-					.t1 	TwitterHandle
-					.t1 	Hashtag
-					br
-					.t0 Dates
-					.t1 	-Date (Past)
-					.t1 	Date (Present)
-					.t1 	+Date (Future)
-					.t1 	?Date (Past or Future)
-					.t1 	Day
-					.t1 	Month
-					.t1 	Year
-					br
-					.t0 Text
-					.t1 	Word
-					.t1 	Words
-					.t1 	Sentence
-					.t1 	Sentences
-					.t1 	Paragraph
-					.t1 	Paragraphs
+					.t0 	Dollar
+					.t0 	CreditCardNumber
+					.t0 	CreditCardType
+					.t0 	CreditCardExpiration
+					.t0 	CreditCardExpirationMonth
+					.t0 	CreditCardExpirationYear
+					.t0 	Email
+					.t0 	Username
+					.t0 	Domain
+					.t0 	TLD
+					.t0 	IP
+					.t0 	IPv6
+					.t0 	Avatar
+					.t0 	FacebookID
+					.t0 	TwitterHandle
+					.t0 	Hashtag
+					.t0 	-Date (Past)
+					.t0 	Date (Present)
+					.t0 	+Date (Future)
+					.t0 	?Date (Past or Future)
+					.t0 	Day
+					.t0 	Month
+					.t0 	Year
+					.t0 	Word
+					.t0 	Words
+					.t0 	Sentence
+					.t0 	Sentences
+					.t0 	Paragraph
+					.t0 	Paragraphs
 
 
 		.row#getstarted
@@ -210,14 +198,14 @@ block body
 					br
 					.t0 REQUEST BODY
 					br
-					.t1 { ... your_new_model ... }
+					.t1 { ... your_new_schema ... }
 				h3 updating a route
 				.code
 					.t0 PUT http://schematico.co/your_username/your_route?token=your_token
 					br
 					.t0 REQUEST BODY
 					br
-					.t1 { ... your_updated_model ... }
+					.t1 { ... your_updated_schema ... }
 				//- p Getting data requires a POST request because we need to be able to identity you as the caller. We don't want other people making API calls on your behalf.
 				h3 getting data &dash; one object
 				.code
@@ -225,14 +213,14 @@ block body
 					br
 					.t0 RESPONSE BODY
 					br
-					.t1 { ... your_model_with_data ... }
+					.t1 { ... your_schema_with_data ... }
 				h3 getting more data &dash; 173 objects
 				.code(style="margin-bottom: 0px !important;")
 					.t0 GET http://schematico.co/your_username/your_route?token=your_token&count=173
 					br
 					.t0 RESPONSE BODY
 					br
-					.t1 [{ ... your_model_with_data ... }, ...]
+					.t1 [{ ... your_schema_with_data ... }, ...]
 
 	.full#comingsoon
 		.center
