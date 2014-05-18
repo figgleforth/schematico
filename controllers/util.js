@@ -196,6 +196,13 @@ function _valueForKeyInDictionary(key, dictionary) {
 			case "+Date":
 				value = faker.Date.future(1 + Math.round(Math.random()*100));
 				break;
+			case "+?Date":
+				if (Math.random() < 0.5) {
+					value = faker.Date.past(1 + Math.round(Math.random()*100));
+				} else {
+					value = faker.Date.future(1 + Math.round(Math.random()*100));
+				}
+				break;
 			case "Day":
 				value = moment().dayOfYear();
 				break;
