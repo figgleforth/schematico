@@ -40,11 +40,11 @@ app.post("/signup",				UserController.CheckIfEmailExists,
 
 	
 // Debug API //
-// app.delete("/killall",			UserController.Destroy,
-// 								RouteController.Destroy,
-// 								function(req, res) {
-// 									res.send(200, "Destroyed all Users and Routes.");
-// 								});
+app.delete("/killall",			UserController.Destroy,
+								RouteController.Destroy,
+								function(req, res) {
+									res.send(200, "Destroyed all Users and Routes.");
+								});
 
 // app.get("/routes",				RouteController.GetAllRoutesEverCreated);
 
