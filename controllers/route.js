@@ -66,7 +66,7 @@ exports.GetRoute = function(req, res, next) {
 				req.model = route.model;
 				next();
 			} else {
-				res.send(400, uril.res("That route is not defined."));
+				res.send(400, util.res("That route is not defined."));
 			}
 		}
 	});
