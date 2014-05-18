@@ -5,53 +5,171 @@ block body
 			.row
 				.col12
 					.pull-center
-						h1 Schematico
+						h1 schematico
 
 	.center#body
 		.row
 			.col12
 				h2 Dynamic Data Generation
-				p Sometimes you need data to test your application or web service, but you have nowhere to get it. Schematico allows you create schemas exactly how you need them. Then it populates them with random data. 
+				p Data is valuable for testing your application or web service, but hard to come by. Schematico allows you create custom schemas and populate them with random data.
 
-				h2 Type Aware Data
-				p Schematico knows what kind of data you are looking for and uses some of the best randomization libraries to deliver realistic results.
+				h2 Contextual Data
+				p Schematico knows what kind of data you are looking for and delivers realistic results. Choose from over 50 different data types &dash; from personal data, to financial, social, and numerical data &dash; and much more.
 
-		.row
+		.row.code-block
 			.col6
+				h3 Sample request
 				.code.request
 					.t0 {
-					.t1 name : {
-					.t2 first : "FirstName",
-					.t2 last : "LastName"
-					.t1 }
-					.t1 phone : "Phone",
-					.t1 email : "Email",
-					.t1 address : {
-					.t2 street : "Street",
-					.t2 city : "City",
-					.t2 state : "State"
-					.t2 zip : "Zip",
-					.t1 }
+					.t1 	name : {
+					.t2 		first : "FirstName",
+					.t2 		last : "LastName"
+					.t1 	}
+					.t1 	phone : "Phone",
+					.t1 	email : "Email",
+					.t1 	address : {
+					.t2 		street : "Street",
+					.t2 		city : "City",
+					.t2 		state : "State"
+					.t2 		zip : "Zip",
+					.t1 	}
 					.t0 }
 
 			.col6
+				h3 Sample response
 				.code.response
 					.t0 {
-					.t1 name : {
-					.t2 first : "John",
-					.t2 last : "Smith"
-					.t1 }
-					.t1 phone : "(417) 934-4467",
-					.t1 email : "mibomu@ibevajoh.io",
-					.t1 address : {
-					.t2 street : "Rolla Drive",
-					.t2 city : "Buffalo",
-					.t2 state : "NY"
-					.t2 zip : "14226",
-					.t1 }
+					.t1 	name : {
+					.t2 		first : "John",
+					.t2 		last : "Smith"
+					.t1 	}
+					.t1 	phone : "(417) 934-4467",
+					.t1 	email : "mibomu@ibevajoh.io",
+					.t1 	address : {
+					.t2 		street : "Rolla Drive",
+					.t2 		city : "Buffalo",
+					.t2 		state : "NY"
+					.t2 		zip : "14221",
+					.t1 	}
 					.t0 }
 
 		.row
 			.col12
-				.pull-center
-					h1 coming soon
+				h2 Advanced Schema Structure
+				p The schema at its core is a JSON object &dash; these can be nested as many levels as desired. You can even even request arrays of objects, and specify how many objects you want to receive.
+
+		.row.code-block
+			.col6
+				h3 Sample request
+				.code.request
+					.t0 {
+					.t1 	identity : {
+					.t2 		email : "Email",
+					.t2 		social : {
+					.t3 			twitter : "TwitterHandle",
+					.t3 			facebook : "FacebookID",
+					.t3 			website : {
+					.t4 				domain : "Domain",
+					.t4 				ip : "IP"
+					.t3 			}
+					.t2 		}
+					.t1 	},
+					.t1 	friends : [{
+					.t2			username : "Username",
+					.t2 		twitter : "TwitterHandle"
+					.t1 	}, 5]
+					.t0 }
+			.col6
+				h3 Sample response
+				.code.response
+					.t0 {
+					.t1 	identity : {
+					.t2 		email : "vihul@kuvankac.gov",
+					.t2 		social : {
+					.t3 			twitter : "@oj",
+					.t3 			facebook : "1000085540447128",
+					.t3 			website : {
+					.t4 				domain : "uv.edu",
+					.t4 				ip : "14.64.214.178"
+					.t3 			}
+					.t2 		}
+					.t1 	},
+					.t1 	friends : [
+					.t2 		{
+					.t3				username : "Abigail_Price",
+					.t3 			twitter : "@tujja"
+					.t2 		},
+					.t2 		{
+					.t3				username : "Katlyn.Kohler",
+					.t3 			twitter : "@esemu"
+					.t2 		},
+					.t2 		{
+					.t3				username : "Rafaela",
+					.t3 			twitter : "@tifjacno"
+					.t2 		},
+					.t2 		{
+					.t3				username : "Lauretta_Schmitt",
+					.t3 			twitter : "@favius"
+					.t2 		},
+					.t2 		{
+					.t3				username : "Leilani",
+					.t3 			twitter : "@ulwec"
+					.t2			}
+					.t1 	]
+					.t0 }
+
+		.row#getstarted
+			.col12.code-block
+				h2 How To User Schematico
+				p When Schematico launches, you'll only need to sign up for an account. You will get your own unique username which will serve as your route identifier.
+				p Once you have a username you'll get a token that needs to be supplied with every API call so that we can authenticate you.
+				br
+				h3 creating a route
+				.code
+					.t0 POST http://schematico.co/your_username/your_route
+					br
+					.t0 {
+					.t1		token : "your_token",
+					.t1		model : { ... }
+					.t0	}
+				h3 updating a route
+				.code
+					.t0 PUT http://schematico.co/your_username/your_route
+					br
+					.t0 {
+					.t1		token : "your_token",
+					.t1		model : { ... }
+					.t0	}
+				p Getting data requires a POST request because we need to be able to identity you as the caller. We don't want other people using up your API calls without your consent.
+				h3 getting data &dash; one object
+				.code
+					.t0 POST http://schematico.co/your_username/your_route
+					br
+					.t0 {
+					.t1		token : "your_token"
+					.t0	}
+				h3 getting more data &dash; 173 objects
+				.code(style="margin-bottom: 0px !important;")
+					.t0 POST http://schematico.co/your_username/your_route/173
+					br
+					.t0 {
+					.t1		token : "your_token"
+					.t0	}
+
+	.full#comingsoon
+		.center
+			.row
+				.col12
+					.pull-center
+						h1 coming soon
+
+
+
+
+
+
+
+
+
+
+
