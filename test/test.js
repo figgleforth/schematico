@@ -97,7 +97,7 @@ describe("API", function() {
 		.set("Content-Type", "application/json")
 		.send(newSchema)
 		.end(function(error, res) {
-			res.should.have.status(400);
+			res.should.have.status(401);
 			done();
 		});
 	});
