@@ -153,6 +153,38 @@ describe("API", function() {
 		});
 	});
 
+	it("Recover token with good credentials should return 200", function(done) {
+		var goodCredentials = {
+			email : "example@email.com",
+			password : "example"
+		}
+
+		request(app)
+		.post("/recover")
+		.set("Content-Type", "application/json")
+		.send(goodCredentials)
+		.end(function(error, res) {
+			res.should.have.status(200);
+			done();
+		});
+	});
+
+	it("Recover token with bad credentials should return 400", function(done) {
+		var badCredentials = {
+			email : "example1@email.com",
+			password : "example1"
+		}
+
+		request(app)
+		.post("/recover")
+		.set("Content-Type", "application/json")
+		.send(badCredentials)
+		.end(function(error, res) {
+			res.should.have.status(400);
+			done();
+		});
+	});
+
 	// it("Update a route without token should return 400", function(done) {
 	// 	request(app).put("/"+_username+"/"+_route).send({
 	// 		"name" : "Name",

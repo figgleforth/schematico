@@ -36,8 +36,8 @@ app.post("/signup",				UserController.CheckIfEmailExists,
 								UserController.CheckIfUsernameExists,
 								UserController.CreateNewUser);
 
-	
-
+app.post("/recover",			UserController.Authenticate,
+								UserController.RecoverToken);
 
 // app.get("/routes",				RouteController.GetAllRoutesEverCreated);
 

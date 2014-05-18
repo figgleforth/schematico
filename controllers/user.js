@@ -50,6 +50,14 @@ exports.Authenticate = function(req, res, next) {
 	});
 }
 
+exports.RecoverToken = function(req, res, next) {
+	if (req.user) {
+		res.send(200, req.user.token);
+	} else {
+		res.send(400, "Not authenticated.");
+	}
+}
+
 exports.CheckIfEmailExists = function(req, res, next) {
 	Models.User.count({email:req.body.email}, function(error, count) {
 		if (count > 0) {
