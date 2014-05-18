@@ -1,7 +1,20 @@
 var supertest = require("supertest");
 var assert = require("assert");
 var app = require("../schematico.js").app;
+var UserController = require("../schematico.js").UserController;
+var RouteController = require("../schematico.js").RouteController;
 
+// Additional Routes
+app.delete("/killall",			UserController.Destroy,
+								RouteController.Destroy,
+								function(req, res) {
+									res.send(200, "Destroyed all Users and Routes.");
+								});
+
+app.delete("/userByToken",		UserController.DestroyByToken);
+
+
+// Tests
 describe("Static Pages", function() {
 	it("GET / should return HTML and 200", function(done) {
 		supertest(app)

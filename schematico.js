@@ -26,15 +26,6 @@ if ('development' == env) {
 }
 util.connectToMongoDB("localhost", "alpha");
 
-// Testing
-app.get("/200", function(req, res) {
-	res.send(200);
-});
-
-app.get("/400", function(req, res) {
-	res.send(400);
-});
-
 // Static Pages //
 app.get("/", function(req, res) {
 	res.render("index");
@@ -46,14 +37,7 @@ app.post("/signup",				UserController.CheckIfEmailExists,
 								UserController.CreateNewUser);
 
 	
-// Debug API //
-app.delete("/killall",			UserController.Destroy,
-								RouteController.Destroy,
-								function(req, res) {
-									res.send(200, "Destroyed all Users and Routes.");
-								});
 
-app.delete("/userByToken",		UserController.DestroyByToken);
 
 // app.get("/routes",				RouteController.GetAllRoutesEverCreated);
 
@@ -94,3 +78,5 @@ app.put("/:username/:route",	UserController.UserForUsername,
 
 app.listen(5000);
 exports.app = app;
+exports.UserController = UserController;
+exports.RouteController = RouteController;
