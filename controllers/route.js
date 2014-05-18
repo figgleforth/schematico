@@ -4,7 +4,7 @@ var Models = require("../models");
 var ObjectId = mongoose.Schema.Types.ObjectId;
 
 exports.CreateRoute = function(req, res, next) {
-	if (!req.body) {
+	if (req.body === {}) {
 		res.send(400, "You need to define a schema for this route.");
 	} else {
 		new Models.Route({
