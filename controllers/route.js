@@ -4,30 +4,34 @@ var Models = require("../models");
 var ObjectId = mongoose.Schema.Types.ObjectId;
 
 exports.CreateRoute = function(req, res, next) {
-	new Models.Route({
-		userId : req.user._id,
-		route : req.params.route,
-		model : req.body
-	}).save(function(error, saved) {
-		if (error) util.error(error, res);
-		else {
-			if (saved) {
-				req.user.routes.push(saved._id);
-				req.user.save(function(error) {
-					if (error) res.send(error);
-					else {
-						res.send(200, {
-							message : "Route successfully created.",
-							route : "/"+req.user.username+"/"+saved.route,
-							model : saved.model
-						});
-					}
-				});
-			} else {
-				res.send(400, "Error. Please try again.");
+	if (!req.body) {
+		res.send(400, "You need to define a schema for this route.");
+	} else {
+		new Models.Route({
+			userId : req.user._id,
+			route : req.params.route,
+			model : req.body
+		}).save(function(error, saved) {
+			if (error) util.error(error, res);
+			else {
+				if (saved) {
+					req.user.routes.push(saved._id);
+					req.user.save(function(error) {
+						if (error) res.send(error);
+						else {
+							res.send(201, {
+								message : "Route successfully created.",
+								route : "/"+req.user.username+"/"+saved.route,
+								model : saved.model
+							});
+						}
+					});
+				} else {
+					res.send(400, "Error. Please try again.");
+				}
 			}
-		}
-	});
+		});
+	}
 };
 
 exports.UpdateRoute = function(req, res, next) {
