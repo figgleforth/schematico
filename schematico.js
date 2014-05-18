@@ -24,7 +24,6 @@ app.get("/", function(req, res) {
 	res.render("index");
 });
 
-
 // Account //
 // app.post("/signup",				UserController.CheckIfEmailExists,
 // 								UserController.CheckIfUsernameExists,
