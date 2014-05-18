@@ -33,11 +33,6 @@ describe("API", function() {
 		request(app)
 			.post("/signup")
 			.set("Content-Type", "application/json")
-			.send({
-				email : "example@example.com",
-				username : _username,
-				password : "example"
-			})
 			.expect(400, done);
 
 
