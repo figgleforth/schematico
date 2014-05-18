@@ -32,7 +32,7 @@ describe("API", function() {
 
 	it("Create new user should return 201", function(done) {
 		var newUser = {
-			email : "example@email.coom",
+			email : "example@email.com",
 			username : "example",
 			password : "example"
 		}
@@ -42,7 +42,7 @@ describe("API", function() {
 		.set("Content-Type", "application/json")
 		.send(newUser)
 		.end(function(error, res) {
-			if (error) { throw error; }
+			if (error) { done(error); }
 			res.should.have.status(201);
 			done();
 		});
