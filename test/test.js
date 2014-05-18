@@ -44,6 +44,8 @@ describe("API", function() {
 		.end(function(error, res, body) {
 			res.should.have.status(201);
 			res.body.should.have.property("token");
+			_newUserToken = res.body.token;
+			res.body.should.have.property("tokens");
 			done();
 		});
 	});
