@@ -7,7 +7,7 @@ exports.CreateRoute = function(req, res, next) {
 	new Models.Route({
 		userId : req.user._id,
 		route : req.params.route,
-		model : req.body.model
+		model : req.body
 	}).save(function(error, saved) {
 		if (error) util.error(error, res);
 		else {

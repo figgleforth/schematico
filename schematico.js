@@ -45,21 +45,21 @@ app.get("/:username/routes",	UserController.UserForUsername,
 								RouteController.GetRoutes);
 
 
+// done
+// /username/route?token=abcdef&count=123
 app.get("/:username/:route",	UserController.UserForUsername,
-								RouteController.GetRoute,
 								UserController.ValidateTokenInQuery,
+								RouteController.GetRoute,
 								RouteController.PopulateModel);
 
-
-// app.get("/:username/:route/:count?",	UserController.ValidateUsername,
-										// RouteController.GetRoute,
-										// RouteController.PopulateModel);
-
-app.post("/:username/:route",	UserController.ValidateUsernameAndToken,
-								UserController.UserForToken,
+// /username/route?token=abcdef
+// body is the model
+app.post("/:username/:route",	UserController.UserForUsername,
+								UserController.ValidateTokenInQuery,
 								RouteController.CheckIfRouteExists,
 								RouteController.CreateRoute);
 
+// /username/route?token=abcdef
 app.put("/:username/:route",	UserController.ValidateUsernameAndToken,
 								UserController.UserForToken,
 								RouteController.UpdateRoute);
