@@ -115,7 +115,7 @@ exports.Destroy = function(req, res, next) {
 	});
 }
 
-exports.GetAll = function(req, res, next) {
+exports.GetAllRoutesEverCreated = function(req, res, next) {
 	Models.Route.find({}, function(error, found) {
 		if (error) res.send(error);
 		else {

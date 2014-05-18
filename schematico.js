@@ -1,3 +1,5 @@
+var UserController = require("./controllers/user");
+var RouteController = require("./controllers/route");
 var express = require("express");
 var stylus = require("stylus");
 var util = require("./controllers/util");
@@ -16,54 +18,62 @@ if ('development' == env) {
 	app.use(express.static(__dirname + "/public"));
 }
 util.connectToMongoDB("alpha");
-var modelsByRoute = {}; // temporary storage
 
-var UserController = require("./controllers/user");
-var RouteController = require("./controllers/route");
-
+// Static Pages //
 app.get("/", function(req, res) {
 	res.render("index");
 });
 
-app.get("/killall",		UserController.Destroy,
-						RouteController.Destroy,
-						function(req, res) {
-							res.send(200, "Destroyed all Users and Routes.");
-						});
 
-app.get("/routes",	RouteController.GetAll);
+// Account //
+app.post("/signup",				UserController.CheckIfEmailExists,
+								UserController.CheckIfUsernameExists,
+								UserController.CreateNewUser,
+								UserController.SendToken);
 
-app.post("/recover",	UserController.Authenticate,
-						UserController.RecoverToken);
+	
+// Debug API //
+app.delete("/killall",			UserController.Destroy,
+								RouteController.Destroy,
+								function(req, res) {
+									res.send(200, "Destroyed all Users and Routes.");
+								});
 
-app.post("/signup",		UserController.CheckIfEmailExists,
-						UserController.CheckIfUsernameExists,
-						UserController.CreateNewUser,
-						UserController.RecoverToken);
+app.get("/routes",				RouteController.GetAllRoutesEverCreated);
 
 app.get("/:username/routes",	UserController.UserForUsername,
 								RouteController.GetRoutes);
 
 
-// done
-// /username/route?token=abcdef&count=123
+// Product API //
+/**
+	@param username		person's username
+	@query token 		token required to make API calls
+	@query count 		(optional) how many model objects you want back
+ */
 app.get("/:username/:route",	UserController.UserForUsername,
 								UserController.ValidateTokenInQuery,
 								RouteController.GetRoute,
 								RouteController.PopulateModel);
 
-// done
-// /username/route?token=abcdef
-// body is the model
+/**
+	@param username		person's username
+	@query token 		token required to make API calls
+	@body  model 		the model for this route
+ */
 app.post("/:username/:route",	UserController.UserForUsername,
 								UserController.ValidateTokenInQuery,
 								RouteController.CheckIfRouteExists,
 								RouteController.CreateRoute);
 
-// /username/route?token=abcdef
-// body is the new model
+/**
+	@param username		person's username
+	@query token 		token required to make API calls
+	@body  model 		the new model for this route
+ */
 app.put("/:username/:route",	UserController.UserForUsername,
 								UserController.ValidateTokenInQuery,
 								RouteController.UpdateRoute);
+
 
 app.listen(5000);

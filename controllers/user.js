@@ -18,7 +18,10 @@ exports.CreateNewUser = function(req, res, next) {
 		if (err) { res.send(err); }
 		else {
 			req.user = saved;
-			util.sendEmail(saved.email, "Schematico Account Created", "Your free account is now ready to use. Supply this token with all API calls to identify yourself: "+req.user.token);
+			util.sendEmail(saved.email,
+				"Your Schematico account has been created",
+				"Supply this token with all API calls as a query to identify yourself: "+req.user.token
+			);
 			next();
 		}
 	});
@@ -78,9 +81,9 @@ exports.UserForToken = function(req, res, next) {
 	});
 }
 
-exports.RecoverToken = function(req, res, next) {
+exports.SendToken = function(req, res, next) {
 	res.send(200, {
-		message : "This is your token, use it with all API calls.",
+		message : "This is your token, use it with all API calls. Attach is as a query to identify yourself.",
 		token : req.user.token
 	});
 }
