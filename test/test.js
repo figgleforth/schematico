@@ -62,7 +62,7 @@ describe("API", function() {
 		supertest(app).post("/"+_username+"/"+_route).send({
 			name : "Name",
 			"phone" : "Phone"
-		}).expect(400).end(function(error, res) {
+		}).expect(200).end(function(error, res) {
 			done();
 		});
 	});
