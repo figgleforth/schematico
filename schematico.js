@@ -26,23 +26,23 @@ app.get("/", function(req, res) {
 
 
 // Account //
-app.post("/signup",				UserController.CheckIfEmailExists,
-								UserController.CheckIfUsernameExists,
-								UserController.CreateNewUser,
-								UserController.SendToken);
+// app.post("/signup",				UserController.CheckIfEmailExists,
+// 								UserController.CheckIfUsernameExists,
+// 								UserController.CreateNewUser,
+// 								UserController.SendToken);
 
 	
 // Debug API //
-app.delete("/killall",			UserController.Destroy,
-								RouteController.Destroy,
-								function(req, res) {
-									res.send(200, "Destroyed all Users and Routes.");
-								});
+// app.delete("/killall",			UserController.Destroy,
+// 								RouteController.Destroy,
+// 								function(req, res) {
+// 									res.send(200, "Destroyed all Users and Routes.");
+// 								});
 
-app.get("/routes",				RouteController.GetAllRoutesEverCreated);
+// app.get("/routes",				RouteController.GetAllRoutesEverCreated);
 
-app.get("/:username/routes",	UserController.UserForUsername,
-								RouteController.GetRoutes);
+// app.get("/:username/routes",	UserController.UserForUsername,
+								// RouteController.GetRoutes);
 
 
 // Product API //
