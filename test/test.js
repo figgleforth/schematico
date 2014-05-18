@@ -1,4 +1,4 @@
-var request = require("request");
+var request = require("supertest");
 var assert = require("assert");
 var app = require("../schematico.js").app;
 var UserController = require("../schematico.js").UserController;
