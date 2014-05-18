@@ -22,7 +22,10 @@ exports.CreateNewUser = function(req, res, next) {
 				"Your Schematico account has been created",
 				"Supply this token with all API calls as a query to identify yourself: "+req.user.token
 			);
-			next();
+			res.send(201, {
+				message : "This is your token, use it with all API calls. Attach is as a query to identify yourself.",
+				token : req.user.token
+			});
 		}
 	});
 };
@@ -78,13 +81,6 @@ exports.UserForToken = function(req, res, next) {
 				res.send(400, utils.res("User does not exist for this userID."));
 			}
 		}
-	});
-}
-
-exports.SendToken = function(req, res, next) {
-	res.send(200, {
-		message : "This is your token, use it with all API calls. Attach is as a query to identify yourself.",
-		token : req.user.token
 	});
 }
 

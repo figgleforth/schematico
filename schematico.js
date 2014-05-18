@@ -34,10 +34,9 @@ app.get("/", function(req, res) {
 });
 
 // Account //
-// app.post("/signup",				UserController.CheckIfEmailExists,
-// 								UserController.CheckIfUsernameExists,
-// 								UserController.CreateNewUser,
-// 								UserController.SendToken);
+app.post("/signup",				UserController.CheckIfEmailExists,
+								UserController.CheckIfUsernameExists,
+								UserController.CreateNewUser);
 
 	
 // Debug API //
