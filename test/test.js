@@ -33,7 +33,7 @@ describe("API", function() {
 	it("Create new user should return 201", function(done) {
 		var newUser = {
 			email : "example@email.com",
-			username : "example",
+			username : _username,
 			password : "example"
 		}
 
@@ -50,7 +50,7 @@ describe("API", function() {
 	it("Create the same user should return 400", function(done) {
 		var newUser = {
 			email : "example@email.com",
-			username : "example",
+			username : _username,
 			password : "example"
 		}
 
@@ -59,45 +59,47 @@ describe("API", function() {
 		.set("Content-Type", "application/json")
 		.send(newUser)
 		.end(function(error, res) {
-			res.should.have.status(201);
+			res.should.have.status(400);
+			_newUserToken = res.token;
 			done();
 		});
 	});
 
-	// it("Create new user again should return 400", function(done) {
-	// 	request(app).post("/signup").send({
-	// 		email : "example@example.com",
-	// 		username : "example",
-	// 		password : "example"
-	// 	}).expect(400).end(function(error, res) {
-	// 		assert.equal(res.body.token, undefined, "Token is undefined.");
-	// 		done();
-	// 	});
-	// });
+	it("Creating a new route without a schema or token should return 400", function(done) {
+		request(app)
+		.post("/"+_username+"/"+_route)
+		.set("Content-Type", "application/json")
+		.end(function(error, res) {
+			res.should.have.status(400);
+			done();
+		});
+	});
 
-	// it("Create a new route without schema should return 400", function(done) {
-	// 	request(app).post("/"+_username+"/"+_route).expect(400).end(function(error, res) {
-	// 		done();
-	// 	});
-	// });
+	it("Creating a new route without a schema but with token should return 400", function(done) {
+		request(app)
+		.post("/"+_username+"/"+_route+"?token="+_newUserToken)
+		.set("Content-Type", "application/json")
+		.end(function(error, res) {
+			res.should.have.status(400);
+			done();
+		});
+	});
 
-	// it("Create a new route with improper schema JSON should return 400", function(done) {
-	// 	request(app).post("/"+_username+"/"+_route).send({
-	// 		name : "Name",
-	// 		"phone" : "Phone"
-	// 	}).expect(200).end(function(error, res) {
-	// 		done();
-	// 	});
-	// });
+	it("Creating a new route with a schema and with token should return 201", function(done) {
+		var newSchema = {
+			name : "Name",
+			email : "Email"
+		}
 
-	// it("Create a new route with proper schema JSON should return 201", function(done) {
-	// 	request(app).post("/"+_username+"/"+_route).send({
-	// 		"name" : "Name",
-	// 		"phone" : "Phone"
-	// 	}).expect(201).end(function(error, res) {
-	// 		done();
-	// 	});
-	// });
+		request(app)
+		.post("/"+_username+"/"+_route+"?token="+_newUserToken)
+		.set("Content-Type", "application/json")
+		.send(newSchema)
+		.end(function(error, res) {
+			res.should.have.status(400);
+			done();
+		});
+	});
 
 	// it("Update a route without token should return 400", function(done) {
 	// 	request(app).put("/"+_username+"/"+_route).send({
