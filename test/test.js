@@ -43,7 +43,6 @@ describe("API", function() {
 		.send(newUser)
 		.end(function(error, res, body) {
 			res.should.have.status(201);
-			body.should.have.property("token");
 			_newUserToken = body.token;
 			done();
 		});
