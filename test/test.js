@@ -40,12 +40,25 @@ describe("API", function() {
 		request(app)
 		.post("/signup")
 		.set("Content-Type", "application/json")
-		.post(newUser)
+		.send(newUser)
 		.end(function(error, res) {
 			if (error) { throw error; }
 			res.should.have.status(201);
 			done();
 		});
+
+
+
+		// request(app).post("/signup").send({
+		// 	email : "example@example.com",
+		// 	username : _username,
+		// 	password : "example"
+		// }).expect(400).end(function(error, res) {
+		// 	assert.notEqual(res.body.token, 1, "Token is undefined.");
+		// 	_newUserToken = res.body.token;
+		// 	if (error) return done(error);
+		// 	done();
+		// });
 	});
 
 	// it("Create new user again should return 400", function(done) {
