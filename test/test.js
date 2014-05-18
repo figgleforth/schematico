@@ -45,7 +45,7 @@ describe("Account", function() {
 	});
 
 	it("Delete user with the token should return 200", function(done) {
-		supertest(app).del("/userByToken?token="+newUserToken)
+		supertest(app).delete("/userByToken?token="+newUserToken)
 		.expect(200, done);
 	});
 });
