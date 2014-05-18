@@ -118,41 +118,6 @@ describe("API", function() {
 		});
 	});
 
-	it("Create another user with the same details should return 400", function(done) {
-		var newUser = {
-			email : "example@email.com",
-			username : _username,
-			password : "example"
-		}
-
-		request(app)
-		.post("/signup")
-		.set("Content-Type", "application/json")
-		.send(newUser)
-		.end(function(error, res) {
-			res.should.have.status(400);
-			res.body.should.not.have.property("token");
-			_newUserToken = res.body.token;
-			done();
-		});
-	});
-
-	it("Creating a new route with a schema and with token should return 400 because the previous test did not get a token back", function(done) {
-		var newSchema = {
-			name : "Name",
-			email : "Email"
-		}
-
-		request(app)
-		.post("/"+_username+"/"+_route+"?token="+_newUserToken)
-		.set("Content-Type", "application/json")
-		.send(newSchema)
-		.end(function(error, res) {
-			res.should.have.status(400);
-			done();
-		});
-	});
-
 	it("Recover token with good credentials should return 200", function(done) {
 		var goodCredentials = {
 			email : "example@email.com",
@@ -194,6 +159,60 @@ describe("API", function() {
 			done();
 		});
 	});
+
+	it("Get random data for the route should return data", function(done) {
+		request(app)
+		.get("/"+_username+"/"+_route+"?token="+_newUserToken)
+		.set("Content-Type", "application/json")
+		.end(function(error, res) {
+			res.body.should.be.ok;
+			done();
+		});
+	});
+
+
+
+
+
+
+
+
+	it("Create another user with the same details should return 400", function(done) {
+		var newUser = {
+			email : "example@email.com",
+			username : _username,
+			password : "example"
+		}
+
+		request(app)
+		.post("/signup")
+		.set("Content-Type", "application/json")
+		.send(newUser)
+		.end(function(error, res) {
+			res.should.have.status(400);
+			res.body.should.not.have.property("token");
+			_newUserToken = res.body.token;
+			done();
+		});
+	});
+
+	it("Creating a new route with a schema and with token should return 400 because the previous test did not get a token back", function(done) {
+		var newSchema = {
+			name : "Name",
+			email : "Email"
+		}
+
+		request(app)
+		.post("/"+_username+"/"+_route+"?token="+_newUserToken)
+		.set("Content-Type", "application/json")
+		.send(newSchema)
+		.end(function(error, res) {
+			res.should.have.status(400);
+			done();
+		});
+	});
+
+	// delete
 
 
 });
