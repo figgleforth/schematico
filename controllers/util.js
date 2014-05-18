@@ -288,14 +288,9 @@ exports.sendEmail = function(to, subject, text) {
 
 exports.connectToMongoDB = function(address, name) {
 	var url = "mongodb://"+address+"/"+name;
-	console.log("want to connect to: ", url);
 	mongoose.connect(url);
-	// mongoose.connect("mongodb://localhost/"+name);
 	mongoose.connection.on("error", function(error) {
 		console.log("Mongo database '"+name+"' connection FAIL.", error);
-	});
-	mongoose.connection.on("open", function() {
-		// console.log("Mongo database '"+name+"' connection OK.");
 	});
 }
 

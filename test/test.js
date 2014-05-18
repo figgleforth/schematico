@@ -45,11 +45,20 @@ describe("API", function() {
 		});
 	});
 
-	it("Create a new route with schema should return 201", function(done) {
+	it("Create a new route with improper schema JSON should return 400", function(done) {
+		supertest(app).post("/"+_username+"/"+_route).send({
+			name : "Name",
+			"phone" : "Phone"
+		}).expect(400).end(function(error, res) {
+			done();
+		});
+	});
+
+	it("Create a new route with proper schema JSON should return 201", function(done) {
 		supertest(app).post("/"+_username+"/"+_route).send({
 			"name" : "Name",
 			"phone" : "Phone"
-		}).expect(400).end(function(error, res) {
+		}).expect(201).end(function(error, res) {
 			done();
 		});
 	});
