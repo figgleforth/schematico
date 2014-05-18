@@ -34,7 +34,7 @@ describe("API", function() {
 			email : "example@example.com",
 			username : _username,
 			password : "example"
-		}).expect(201).end(function(error, res) {
+		}).expect(400).end(function(error, res) {
 			assert.notEqual(res.body.token, 1, "Token is undefined.");
 			_newUserToken = res.body.token;
 			done();
