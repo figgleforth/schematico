@@ -60,10 +60,12 @@ describe("API", function() {
 		.send(newUser)
 		.end(function(error, res) {
 			res.should.have.status(400);
-			_newUserToken = res.body.token;
+			_newUserToken = res.token;)
 			done();
 		});
 	});
+
+	console.log("_newUserToken:", _newUserToken);
 
 	it("Creating a new route without a schema and without token should return 400", function(done) {
 		request(app)
