@@ -85,8 +85,11 @@ exports.RecoverToken = function(req, res, next) {
 	});
 }
 
-exports.ValidateToken = function(req, res, next) {
-	Models.User.count({token:req.body.token}, function(error, count) {
+exports.ValidateTokenInQuery = function(req, res, next) {
+	if (!req.query.token) {
+		res.send(400, util.res("You must supply a valid token."));
+	}
+	Models.User.count({token:req.query.token}, function(error, count) {
 		if (count > 0) {
 			next();
 		} else {

@@ -45,9 +45,15 @@ app.get("/:username/routes",	UserController.UserForUsername,
 								RouteController.GetRoutes);
 
 
-app.get("/:username/:route/:count?",	UserController.ValidateUsername,
-										RouteController.GetRoute,
-										RouteController.PopulateModel);
+app.get("/:username/:route",	UserController.UserForUsername,
+								RouteController.GetRoute,
+								UserController.ValidateTokenInQuery,
+								RouteController.PopulateModel);
+
+
+// app.get("/:username/:route/:count?",	UserController.ValidateUsername,
+										// RouteController.GetRoute,
+										// RouteController.PopulateModel);
 
 app.post("/:username/:route",	UserController.ValidateUsernameAndToken,
 								UserController.UserForToken,
