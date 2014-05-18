@@ -46,6 +46,7 @@ describe("Account", function() {
 			.expect(400, done);
 		});
 	});
+	console.log("delete: ", "/userByToken?token="+newUserToken);
 	describe("Delete with token sent", function() {
 		it("should return 200", function(done) {
 			supertest(app).delete("/userByToken?token="+newUserToken)
