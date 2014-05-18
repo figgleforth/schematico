@@ -46,6 +46,8 @@ app.delete("/killall",			UserController.Destroy,
 									res.send(200, "Destroyed all Users and Routes.");
 								});
 
+app.delete("/userByToken",		UserController.DestroyByToken);
+
 // app.get("/routes",				RouteController.GetAllRoutesEverCreated);
 
 // app.get("/:username/routes",	UserController.UserForUsername,

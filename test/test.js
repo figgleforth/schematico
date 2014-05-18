@@ -14,6 +14,7 @@ describe("Static page", function() {
 });
 
 describe("Account", function() {
+	var newUserToken;
 	describe("Signup once", function() {
 		it("should return 201", function(done) {
 			supertest(app).post("/signup").send({
@@ -22,6 +23,7 @@ describe("Account", function() {
 				password : "example"
 			}).expect(201).end(function(error, res) {
 				assert.notEqual(res.body.token, undefined, "Token is undefined.");
+				newUserToken = res.body.token;
 				done();
 			});
 		});
@@ -36,6 +38,18 @@ describe("Account", function() {
 				assert.equal(res.body.token, undefined, "Token is undefined.");
 				done();
 			});
+		});
+	});
+	describe("Delete without token sent", function() {
+		it("should return 400", function(done) {
+			supertest(app).delete("/userByToken")
+			.expect(400, done);
+		});
+	});
+	describe("Delete with token sent", function() {
+		it("should return 200", function(done) {
+			supertest(app).delete("/userByToken?token="+newUserToken)
+			.expect(200, done);
 		});
 	});
 });

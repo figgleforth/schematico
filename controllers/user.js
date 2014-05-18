@@ -129,6 +129,21 @@ exports.UserForUsername = function(req, res, next) {
 }
 
 // NEVER DO This
+exports.DestroyByToken = function(req, res, next) {
+	if (!req.query.token) {
+		res.send(400);
+	}
+	Models.User.find({token : req.query.token}, function(error, found) {
+		if (error) res.send(error);
+		else {
+			for (var i = 0; i < found.length; i++) {
+				found[i].remove();
+			}
+			next();
+		}
+	});
+}
+
 exports.Destroy = function(req, res, next) {
 	Models.User.find({}, function(error, found) {
 		if (error) res.send(error);
