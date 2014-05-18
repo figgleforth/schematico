@@ -17,7 +17,7 @@ if ('development' == env) {
 	}));
 	app.use(express.static(__dirname + "/public"));
 }
-util.connectToMongoDB("alpha");
+util.connectToMongoDB("schematico.co", "alpha");
 
 // Testing
 app.get("/200", function(req, res) {
