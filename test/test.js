@@ -15,38 +15,37 @@ describe("Static page", function() {
 
 describe("Account", function() {
 	var newUserToken;
-	describe("Signup once", function() {
-		it("should return 201", function(done) {
-			supertest(app).post("/signup").send({
-				email : "example@example.com",
-				username : "example",
-				password : "example"
-			}).expect(201).end(function(error, res) {
-				assert.notEqual(res.body.token, undefined, "Token is undefined.");
-				newUserToken = res.body.token;
-				done();
-			});
+
+	it("Create new user should return 201", function(done) {
+		supertest(app).post("/signup").send({
+			email : "example@example.com",
+			username : "example",
+			password : "example"
+		}).expect(201).end(function(error, res) {
+			assert.notEqual(res.body.token, undefined, "Token is undefined.");
+			newUserToken = res.body.token;
+			done();
 		});
 	});
-	describe("Signup again", function() {
-		it("should return 400", function(done) {
-			supertest(app).post("/signup").send({
-				email : "example@example.com",
-				username : "example",
-				password : "example"
-			}).expect(400).end(function(error, res) {
-				assert.equal(res.body.token, undefined, "Token is undefined.");
-				done();
-			});
+
+	it("Create new user again should return 400", function(done) {
+		supertest(app).post("/signup").send({
+			email : "example@example.com",
+			username : "example",
+			password : "example"
+		}).expect(400).end(function(error, res) {
+			assert.equal(res.body.token, undefined, "Token is undefined.");
+			done();
 		});
 	});
-	describe("Delete without token sent", function() {
-		it("should return 400", function(done) {
-			supertest(app).del("/userByToken")
-			.expect(400).end(function(error, res) {
-				supertest(app).delete("/userByToken?token="+newUserToken)
-				.expect(200, done);
-			});
-		});
+
+	it("Delete user without passing token should return 400", function(done) {
+		supertest(app).del("/userByToken")
+		.expect(400, done);
+	});
+
+	it("Delete user with the token should return 200", function(done) {
+		supertest(app).del("/userByToken?token="+newUserToken)
+		.expect(200, done);
 	});
 });
