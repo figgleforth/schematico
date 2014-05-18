@@ -125,9 +125,11 @@ block body
 				.code.request
 					.t0 Basic
 					.t1 	Number
-					.t1 	-Number
+					.t1 	-Number (Negative)
+					.t1 	?Number (Positive or Negative)
 					.t1 	Integer
-					.t1 	-Integer
+					.t1 	-Integer (Negative)
+					.t1 	?Integer (Positive or Negative)
 					.t1 	Boolean
 					.t1 	Character
 					br
@@ -181,9 +183,9 @@ block body
 					.t1 	Hashtag
 					br
 					.t0 Dates
-					.t1 	-Date
-					.t1 	Date
-					.t1 	+Date
+					.t1 	-Date (Past)
+					.t1 	Date (Present)
+					.t1 	+Date (Future)
 					.t1 	Day
 					.t1 	Month
 					.t1 	Year
@@ -203,35 +205,21 @@ block body
 				br
 				h3 creating a route
 				.code
-					.t0 POST http://schematico.co/your_username/your_route
+					.t0 POST http://schematico.co/your_username/your_route?token=your_token
 					br
-					.t0 {
-					.t1 	token : "your_token",
-					.t1 	model : { ... }
-					.t0 }
+					.t0 { ... your_new_model ... }
 				h3 updating a route
 				.code
-					.t0 PUT http://schematico.co/your_username/your_route
+					.t0 PUT http://schematico.co/your_username/your_route?token=your_token
 					br
-					.t0 {
-					.t1 	token : "your_token",
-					.t1 	model : { ... }
-					.t0 }
-				p Getting data requires a POST request because we need to be able to identity you as the caller. We don't want other people making API calls on your behalf.
+					.t0 { ... your_updated_model ... }
+				//- p Getting data requires a POST request because we need to be able to identity you as the caller. We don't want other people making API calls on your behalf.
 				h3 getting data &dash; one object
 				.code
-					.t0 POST http://schematico.co/your_username/your_route
-					br
-					.t0 {
-					.t1 	token : "your_token"
-					.t0 }
+					.t0 GET http://schematico.co/your_username/your_route?token=your_token
 				h3 getting more data &dash; 173 objects
 				.code(style="margin-bottom: 0px !important;")
-					.t0 POST http://schematico.co/your_username/your_route/173
-					br
-					.t0 {
-					.t1 	token : "your_token"
-					.t0 }
+					.t0 GET http://schematico.co/your_username/your_route?token=your_token&count=173
 
 	.full#comingsoon
 		.center

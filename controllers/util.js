@@ -18,11 +18,17 @@ function _valueForKeyInDictionary(key, dictionary) {
 			case "-Number":
 				value = (Math.random()*Number.MAX_VALUE) * -1;
 				break;
+			case "?Number":
+				value = (Math.random()*Number.MAX_VALUE) * (Math.random() < 0.5 ? -1 : 1);
+				break;
 			case "Integer" :
 				value = Math.round(Math.random()*Number.MAX_VALUE);
 				break;
 			case "-Integer" :
 				value = Math.round(Math.random()*Number.MAX_VALUE) * -1;
+				break;
+			case "?Integer" :
+				value = Math.round(Math.random()*Number.MAX_VALUE) * (Math.random() < 0.5 ? -1 : 1);
 				break;
 			case "Boolean":
 				value = chance.bool();
