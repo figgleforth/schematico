@@ -18,7 +18,7 @@ if ('development' == env) {
 	app.use(express.static(__dirname + "/public"));
 	app.use(function(error, req, res, next) {
 		if (error instanceof SyntaxError) {
-			sendError(400, "JSON syntax error. Maybe you're missing quotes around the keys?");
+			res.send(400, "JSON syntax error. Maybe you're missing quotes around the keys?");
 		} else {
 			next();
 		}
