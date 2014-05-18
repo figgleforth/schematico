@@ -2,14 +2,12 @@ var supertest = require("supertest");
 var assert = require("assert");
 var app = require("../schematico.js").app;
 
-describe("Static page", function() {
-	describe("index", function() {
-		it("should return HTML", function(done) {
-			supertest(app)
-			.get("/")
-			.expect('Content-Type', 'text/html; charset=utf-8')
-			.expect(200, done);
-		});
+describe("Static Pages", function() {
+	it("GET / should return HTML and 200", function(done) {
+		supertest(app)
+		.get("/")
+		.expect('Content-Type', 'text/html; charset=utf-8')
+		.expect(200, done);
 	});
 });
 
