@@ -43,14 +43,10 @@ describe("Account", function() {
 	describe("Delete without token sent", function() {
 		it("should return 400", function(done) {
 			supertest(app).delete("/userByToken")
-			.expect(400, done);
-		});
-	});
-	console.log("delete: ", "/userByToken?token="+newUserToken);
-	describe("Delete with token sent", function() {
-		it("should return 200", function(done) {
-			supertest(app).delete("/userByToken?token="+newUserToken)
-			.expect(200, done);
+			.expect(400).end(function(error, res) {
+				supertest(app).delete("/userByToken?token="+newUserToken)
+				.expect(200, done);
+			});
 		});
 	});
 });
