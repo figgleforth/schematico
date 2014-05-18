@@ -1,4 +1,5 @@
 var request = require("supertest");
+var should = require('should');
 var assert = require("assert");
 var app = require("../schematico.js").app;
 var UserController = require("../schematico.js").UserController;
@@ -30,23 +31,21 @@ describe("API", function() {
 	var _newUserToken;
 
 	it("Create new user should return 201", function(done) {
+		var newUser = {
+			email : "example@email.coom",
+			username : "example",
+			password : "example"
+		}
+
 		request(app)
-			.post("/signup")
-			.set("Content-Type", "application/json")
-			.expect(400, done);
-
-
-
-		// request(app).post("/signup").send({
-		// 	email : "example@example.com",
-		// 	username : _username,
-		// 	password : "example"
-		// }).expect(400).end(function(error, res) {
-		// 	assert.notEqual(res.body.token, 1, "Token is undefined.");
-		// 	_newUserToken = res.body.token;
-		// 	if (error) return done(error);
-		// 	done();
-		// });
+		.post("/signup")
+		.set("Content-Type", "application/json")
+		.post(newUser)
+		.end(function(error, res) {
+			if (error) { throw error; }
+			res.should.have.status(201);
+			done();
+		});
 	});
 
 	// it("Create new user again should return 400", function(done) {
