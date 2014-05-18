@@ -189,7 +189,6 @@ describe("API", function() {
 		request(app)
 		.get("/"+_username+"/routes")
 		.set("Content-Type", "application/json")
-		.send(badCredentials)
 		.end(function(error, res) {
 			res.body.should.be.instanceof(Array).and.have.lengthOf(1);
 			done();
