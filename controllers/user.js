@@ -22,7 +22,6 @@ exports.ResetRateLimitsWithMiddleware = function(req, res, next) {
 		if (error) res.send(400, error);
 		else {
 			if (found) {
-				console.log("found: ", found);
 				for (var i = 0; i < found.length; i++) {
 					found[i].numberOfRequests = 0;
 					found[i].save();
