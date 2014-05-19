@@ -180,6 +180,38 @@ describe("API", function() {
 		});
 	});
 
+	it("Update route without token should return 400", function(done) {
+		var newSchema = {
+			name : "Name",
+			email : "Email"
+		}
+
+		request(app)
+		.put("/"+_username+"/"+_route)
+		.set("Content-Type", "application/json")
+		.send(newSchema)
+		.end(function(error, res) {
+			res.should.have.status(400);
+			done();
+		});
+	});
+
+	it("Update route with token should return 200", function(done) {
+		var newSchema = {
+			name : "Name",
+			email : "Email"
+		}
+
+		request(app)
+		.put("/"+_username+"/"+_route+"?token="+_newUserToken)
+		.set("Content-Type", "application/json")
+		.send(newSchema)
+		.end(function(error, res) {
+			res.should.have.status(400);
+			done();
+		});
+	});
+
 
 
 
