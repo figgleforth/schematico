@@ -250,22 +250,6 @@ describe("API", function() {
 		});
 	});
 
-	it("Creating a new route with a schema and with token should return 400 because the previous test did not get a token back", function(done) {
-		var newSchema = {
-			name : "Name",
-			email : "Email"
-		}
-
-		request(app)
-		.post("/"+_username+"/"+_route+"?token="+_newUserToken)
-		.set("Content-Type", "application/json")
-		.send(newSchema)
-		.end(function(error, res) {
-			res.should.have.status(400);
-			done();
-		});
-	});
-
 	it("Delete user with bad credentials token should return 400", function(done) {
 		var badCredentials = {
 			email : "example1@email.com",
