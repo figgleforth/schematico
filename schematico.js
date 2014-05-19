@@ -82,6 +82,7 @@ app.post("/:username",			UserController.UserForUsername,
 app.get("/:username/:route",	UserController.UserForUsername,
 								UserController.ValidateTokenInQuery,
 								RouteController.GetRoute,
+								UserController.IncrementRequestCount,
 								RouteController.PopulateModel);
 
 /**

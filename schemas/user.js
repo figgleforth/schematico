@@ -8,7 +8,7 @@ exports.schema = mongoose.Schema({
 	salt : String,
 	passhash : String,
 	routes : [ObjectId],
-	token : {type:String, unique:true},	// used with all api calls, can be recovered
-	requests : Number,	// Number of API calls resets daily?
-	tier : Number	// Free, Paid, More Paid
+	token : {type:String, unique:true},
+	requests : {type:Number, default:0},	// Number of API calls resets daily?
+	tier : {type:Number, default:0}			// Free, Paid, More Paid
 });

@@ -50,6 +50,25 @@ exports.Authenticate = function(req, res, next) {
 	});
 }
 
+exports.IncrementRequestCount = function(req, res, next) {
+	if (req.user) {
+		console.log("request count before increment: ", req.user.requests);
+		var count = req.user.requests;
+		count++;
+		req.user.requests = count;
+		console.log("request count after increment: ", req.user.requests);
+		req.use.save(function(error) {
+			if (error) {
+				res.send(500, "Something went wrong. Please try again.");
+			} else {
+				next();
+			}
+		});
+	} else {
+		res.send(400, "Not authenticated.");
+	}
+}
+
 exports.RecoverToken = function(req, res, next) {
 	if (req.user) {
 		res.send(200, req.user.token);
