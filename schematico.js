@@ -35,7 +35,7 @@ var limitResetter = scheduler.scheduleJob({hour:24}, function() {
 });
 
 // DEBUG
-app.get("/reset", 				UserController.ResetRateLimitsWithMiddleware);
+app.get("/resetlimits", 		UserController.ResetRateLimitsWithMiddleware);
 
 app.delete("/killall",			UserController.Destroy,
 								RouteController.Destroy,
