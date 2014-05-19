@@ -9,33 +9,27 @@ block body
 							h1 schematico
 
 	.center#body
-		- if (message) {
-			.row
-				.col12
-					h2 Here's your token: #{token}
-					p #{message}
-		- } else {
 		.row
-			.col12
+			.col12.code-block
 				.form
-					form(role="marketing", method="post", action="/signup")#signup
-						input(type="email", name="email", placeholder="What's your email?", autocomplete="off")#email
-						input(type="password", name="password", placeholder="Set a password", autocomplete="off")#password
-						input(type="username", name="username", placeholder="Pick a username", autocomplete="off")#username
-						center(style="margin-top: 40px;")
-							button(type="submit") Sign up for schematico
-		- }
-	script.
-		$("#email").focus();
-		$("#signup").on("submit", function(event) {
-			event.preventDefault();
-			$.ajax({
-				url: '/signup',
-				type: 'post',
-				dataType: 'json',
-				data: $('#signup').serialize(),
-				success: function(data) {
-					console.log("data: ", data);
-				}
-			});
-		});
+					h2 Get Your Account
+					p First you need to make a POST request with a body that includes your details.
+					h3 post request to http://schematico.co/signup
+					.code
+						.t0 {
+						.t1 	email : "your_email",
+						.t1 	password : "your_password",
+						.t1 	username : "pick_a_username"
+						.t0 }
+					h2 Take Note Of Your Token
+					p The response will give you a token that you need to remember. You'll have to attach it as a query with every API call you make.
+					h3 response
+					.code
+						.t0 {
+						.t1 	"message": "This is your token, use it with all API calls. Attach is as a query to identify yourself.",
+						.t1 	"token": "your_token"
+						.t0 }
+					h2 Have Fun
+					p Take a look at the data types <a href="/#datatypes">here</a> and use the <a href="/#example">example</a> as a guide. All accounts are limited to 100 API calls per day.
+					h2 Lost Your Token?
+					p <a href="mailto:schematico.co@gmail.com?subject='Lost my token!'">Email us</a> with the email you signed up with, and mention your username.
