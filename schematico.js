@@ -106,7 +106,13 @@ app.put("/:username/:route",	UserController.UserForUsername,
 								UserController.ValidateTokenInQuery,
 								RouteController.UpdateRoute);
 
-
+// DEBUG
+app.delete("/killall",			UserController.Destroy,
+								RouteController.Destroy,
+								function(req, res) {
+									res.send(200, "Destroyed all Users and Routes.");
+								});
+								
 app.listen(5000);
 
 exports.app = app;
