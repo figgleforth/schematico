@@ -31,19 +31,30 @@ app.get("/", function(req, res) {
 	res.render("index");
 });
 
-// Account //
+/**
+	Sign up for an account
+	@param body 	email, username, password
+ */
 app.post("/signup",				UserController.CheckIfEmailExists,
 								UserController.CheckIfUsernameExists,
 								UserController.CreateNewUser);
 
+/**
+	Get your token back by authing email and password
+	@param username		person's username
+ */
 app.post("/recover",			UserController.Authenticate,
 								UserController.RecoverToken);
 
-// Product API //
+/**
+	Get all routes as strings
+	@param username		person's username
+ */
 app.get("/:username/routes",	UserController.UserForUsername,
 								RouteController.GetRoutes);
 
 /**
+	Delete a route
 	@param username		person's username
 	@query token 		token required to make API calls
  */
@@ -52,7 +63,9 @@ app.delete("/:username/:route",	UserController.UserForUsername,
 								RouteController.DeleteRoute);
 
 /**
+	Delete a username
 	@param username		person's username
+	@param body 		person's email and password as body
 	@query token 		token required to make API calls
  */
 app.post("/:username",			UserController.UserForUsername,
@@ -61,6 +74,7 @@ app.post("/:username",			UserController.UserForUsername,
 								UserController.DestroyByToken);
 
 /**
+	Get random data for a route
 	@param username		person's username
 	@query token 		token required to make API calls
 	@query count 		(optional) how many model objects you want back
@@ -71,6 +85,7 @@ app.get("/:username/:route",	UserController.UserForUsername,
 								RouteController.PopulateModel);
 
 /**
+	Create a new route and schema
 	@param username		person's username
 	@query token 		token required to make API calls
 	@body  model 		the model for this route
@@ -81,6 +96,7 @@ app.post("/:username/:route",	UserController.UserForUsername,
 								RouteController.CreateRoute);
 
 /**
+	Update a route with a new schema
 	@param username		person's username
 	@query token 		token required to make API calls
 	@body  model 		the new model for this route
@@ -89,12 +105,6 @@ app.put("/:username/:route",	UserController.UserForUsername,
 								UserController.ValidateTokenInQuery,
 								RouteController.UpdateRoute);
 
-
-app.delete("/killall",			UserController.Destroy,
-								RouteController.Destroy,
-								function(req, res) {
-									res.send(200, "Destroyed all Users and Routes.");
-								});
 
 app.listen(5000);
 
