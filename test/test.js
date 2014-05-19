@@ -212,6 +212,26 @@ describe("API", function() {
 		});
 	});
 
+	it("Delete route without token should return 400", function(done) {
+		request(app)
+		.delete("/"+_username+"/"+_route)
+		.set("Content-Type", "application/json")
+		.end(function(error, res) {
+			res.should.have.status(400);
+			done();
+		});
+	});
+
+	it("Delete route without token should return 200", function(done) {
+		request(app)
+		.delete("/"+_username+"/"+_route+"?token="+_newUserToken)
+		.set("Content-Type", "application/json")
+		.end(function(error, res) {
+			res.should.have.status(200);
+			done();
+		});
+	});
+
 
 
 

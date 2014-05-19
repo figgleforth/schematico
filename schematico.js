@@ -43,6 +43,14 @@ app.post("/recover",			UserController.Authenticate,
 app.get("/:username/routes",	UserController.UserForUsername,
 								RouteController.GetRoutes);
 
+/**
+	@param username		person's username
+	@query token 		token required to make API calls
+ */
+app.delete("/:username/:route",	UserController.UserForUsername,
+								UserController.ValidateTokenInQuery,
+								RouteController.DeleteRoute);
+
 // delete account by providing email and password
 
 

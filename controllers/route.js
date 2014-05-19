@@ -84,6 +84,27 @@ exports.GetRoute = function(req, res, next) {
 	});
 }
 
+exports.DeleteRoute = function(req, res, next) {
+	Models.Route.findOne({
+		route : req.params.route
+	}, function(error, route) {
+		if (error) util.error(error, res);
+		else {
+			if (route) {
+				route.remove(function(error) {
+					if (error) {
+						res.send(400, error);
+					} else {
+						res.send(200, "Route successfully deleted.");
+					}
+				});
+			} else {
+				res.send(400, util.res("That route is not defined."));
+			}
+		}
+	});
+}
+
 exports.GetRoutes = function(req, res, next) {
 	if (req.user) {
 		Models.Route.find({_id : req.user.routes}, function(error, found) {
