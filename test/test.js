@@ -170,6 +170,16 @@ describe("API", function() {
 		});
 	});
 
+	it("Get random data for a nonexisting route should return 400", function(done) {
+		request(app)
+		.get("/"+_username+"/this_route_doesnt_exist?token="+_newUserToken)
+		.set("Content-Type", "application/json")
+		.end(function(error, res) {
+			res.should.have.status(400);
+			done();
+		});
+	});
+
 
 
 
