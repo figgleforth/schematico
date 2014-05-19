@@ -52,7 +52,7 @@ exports.Authenticate = function(req, res, next) {
 
 exports.IncrementRequestCount = function(req, res, next) {
 	if (req.user) {
-		req.user.requests = (req.user.requests++);
+		req.user.numberOfRequests = (req.user.numberOfRequests++);
 		req.user.save(function(error) {
 			if (error) {
 				res.send(500, "Something went wrong. Please try again.");
@@ -67,7 +67,9 @@ exports.IncrementRequestCount = function(req, res, next) {
 
 exports.CheckRequestCountLimit = function(req, res, next) {
 	if (req.user) {
-		if (req.user.requests >= 5) {
+		console.log("#: ", req.user.numberOfRequests);
+		console.log("limit: ", req.user.limitForNumberOfRequests);
+		if (req.user.numberOfRequests >= req.user.limitForNumberOfRequests) {
 			res.send(400, "Sorry, you have reached your API call limit for the day.");
 		} else {
 			next();

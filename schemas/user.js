@@ -9,6 +9,7 @@ exports.schema = mongoose.Schema({
 	passhash : String,
 	routes : [ObjectId],
 	token : {type:String, unique:true},
-	requests : {type:Number, default:0},	// Number of API calls resets daily?
-	tier : {type:Number, default:0}			// Free, Paid, More Paid
+	numberOfRequests : {type:Number, default:0},		// Number of API calls resets daily?
+	limitForNumberOfRequests : {type:Number, default:5},	// The limit to their API calls
+	tier : {type:Number, default:0}				// Free, Paid, More Paid
 });
