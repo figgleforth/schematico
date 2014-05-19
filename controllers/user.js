@@ -57,7 +57,7 @@ exports.IncrementRequestCount = function(req, res, next) {
 		count++;
 		req.user.requests = count;
 		console.log("request count after increment: ", req.user.requests);
-		req.use.save(function(error) {
+		req.user.save(function(error) {
 			if (error) {
 				res.send(500, "Something went wrong. Please try again.");
 			} else {
