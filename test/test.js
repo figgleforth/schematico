@@ -160,12 +160,12 @@ describe("API", function() {
 		});
 	});
 
-	it("Get random data for the route should return data", function(done) {
+	it("Get random data for the route should return a non-empty object", function(done) {
 		request(app)
 		.get("/"+_username+"/"+_route+"?token="+_newUserToken)
 		.set("Content-Type", "application/json")
 		.end(function(error, res) {
-			res.body.should.be.ok;
+			res.body.should.not.be.empty;
 			done();
 		});
 	});
