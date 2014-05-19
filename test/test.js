@@ -246,7 +246,6 @@ describe("API", function() {
 		.end(function(error, res) {
 			res.should.have.status(400);
 			res.body.should.not.have.property("token");
-			_newUserToken = res.body.token;
 			done();
 		});
 	});
