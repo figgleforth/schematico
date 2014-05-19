@@ -67,7 +67,7 @@ exports.IncrementRequestCount = function(req, res, next) {
 
 exports.CheckRequestCountLimit = function(req, res, next) {
 	if (req.user) {
-		if (util.isOverRequestLimit(req.user.tier, req.user)) {
+		if (req.user.requests >= 5) {
 			res.send(400, "Sorry, you have reached your API call limit for the day.");
 		} else {
 			next();
