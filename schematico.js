@@ -34,6 +34,14 @@ var limitResetter = scheduler.scheduleJob({hour:24}, function() {
 	console.log("Finished resetting every user's rate limits - "+new Date());
 });
 
+// DEBUG
+app.get("/reset", 				UserController.ResetRateLimitsWithMiddleware);
+
+app.delete("/killall",			UserController.Destroy,
+								RouteController.Destroy,
+								function(req, res) {
+									res.send(200, "Destroyed all Users and Routes.");
+								});
 
 // Static Pages //
 app.get("/", function(req, res) {
@@ -115,15 +123,6 @@ app.post("/:username/:route",	UserController.UserForUsername,
 app.put("/:username/:route",	UserController.UserForUsername,
 								UserController.ValidateTokenInQuery,
 								RouteController.UpdateRoute);
-
-// DEBUG
-app.get("/reset", 				UserController.ResetRateLimitsWithMiddleware);
-
-app.delete("/killall",			UserController.Destroy,
-								RouteController.Destroy,
-								function(req, res) {
-									res.send(200, "Destroyed all Users and Routes.");
-								});
 
 app.listen(5000);
 
