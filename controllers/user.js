@@ -52,7 +52,9 @@ exports.Authenticate = function(req, res, next) {
 
 exports.IncrementRequestCount = function(req, res, next) {
 	if (req.user) {
-		req.user.numberOfRequests = (req.user.numberOfRequests++);
+		var count = req.user.numberOfRequests;
+		count++;
+		req.user.numberOfRequests = count;
 		req.user.save(function(error) {
 			if (error) {
 				res.send(500, "Something went wrong. Please try again.");
