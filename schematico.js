@@ -51,9 +51,14 @@ app.delete("/:username/:route",	UserController.UserForUsername,
 								UserController.ValidateTokenInQuery,
 								RouteController.DeleteRoute);
 
-// delete account by providing email and password
-
-
+/**
+	@param username		person's username
+	@query token 		token required to make API calls
+ */
+app.post("/:username",			UserController.UserForUsername,
+								UserController.ValidateTokenInQuery,
+								UserController.Authenticate,
+								UserController.DestroyByToken);
 
 /**
 	@param username		person's username

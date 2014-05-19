@@ -232,13 +232,6 @@ describe("API", function() {
 		});
 	});
 
-
-
-
-
-
-
-
 	it("Create another user with the same details should return 400", function(done) {
 		var newUser = {
 			email : "example@email.com",
@@ -274,18 +267,33 @@ describe("API", function() {
 		});
 	});
 
-	// delete
+	it("Delete user with bad credentials token should return 400", function(done) {
+		var badCredentials = {
+			email : "example1@email.com",
+			password : "example1"
+		}
 
+		request(app)
+		.post("/"+_username+"?token="+_newUserToken)
+		.set("Content-Type", "application/json")
+		.end(function(error, res) {
+			res.should.have.status(400);
+			done();
+		});
+	});
 
+	it("Delete user with good credentials token should return 200", function(done) {
+		var goodCredentials = {
+			email : "example@email.com",
+			password : "example"
+		}
+
+		request(app)
+		.post("/"+_username+"?token="+_newUserToken)
+		.set("Content-Type", "application/json")
+		.end(function(error, res) {
+			res.should.have.status(200);
+			done();
+		});
+	});
 });
-
-
-
-
-
-
-
-
-
-
-
