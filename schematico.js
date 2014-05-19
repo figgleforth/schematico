@@ -28,11 +28,11 @@ if ('development' == env) {
 util.connectToMongoDB("localhost", "alpha");
 
 // Schedule API call limit reset
-var limitResetter = scheduler.scheduleJob({hour:24}, function() {
-	console.log("Resetting every user's rate limits - "+new Date());
-	UserController.ResetRateLimitsWithoutMiddleware;
-	console.log("Finished resetting every user's rate limits - "+new Date());
-});
+// var limitResetter = scheduler.scheduleJob({hour:24}, function() {
+// 	console.log("Resetting every user's rate limits - "+new Date());
+// 	UserController.ResetRateLimitsWithoutMiddleware;
+// 	console.log("Finished resetting every user's rate limits - "+new Date());
+// });
 
 // DEBUG
 app.get("/resetlimits", 		UserController.ResetRateLimitsWithMiddleware);
