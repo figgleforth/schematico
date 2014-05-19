@@ -18,6 +18,7 @@ exports.ResetRateLimitsWithoutMiddleware = function(req, res, next) {
 }
 
 exports.ResetRateLimitsWithMiddleware = function(req, res, next) {
+	console.log("wtf");
 	Models.User.find({}, function(error, found) {
 		if (error) res.send(400, error);
 		else {
@@ -30,7 +31,6 @@ exports.ResetRateLimitsWithMiddleware = function(req, res, next) {
 			} else {
 				res.send(400, "Something went wrong.");
 			}
-			
 		}
 	});
 }
