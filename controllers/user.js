@@ -21,11 +21,16 @@ exports.ResetRateLimitsWithMiddleware = function(req, res, next) {
 	Models.User.find({}, function(error, found) {
 		if (error) res.send(400, error);
 		else {
-			for (var i = 0; i < found.length; i++) {
-				found[i].numberOfRequests = 0;
-				found[i].save();
+			if (found) {
+				for (var i = 0; i < found.length; i++) {
+					found[i].numberOfRequests = 0;
+					found[i].save();
+				}
+				res.send(200, "Rates reset :)");
+			} else {
+				res.send(400, "Something went wrong.");
 			}
-			res.send(200, "Rates reset :)");
+			
 		}
 	});
 }
