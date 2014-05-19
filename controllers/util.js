@@ -317,3 +317,24 @@ function isEmpty(obj) {
 	}
 	return true;
 }
+
+var limits = {
+	"free" : 5
+}
+
+exports.isOverRequestLimit = function(tier, user) {
+	if (tier == 0) {	// free
+		if (user.requests >= limits["free"]) {
+			return true;
+		} else {
+			return false
+		}
+	} else {
+		return false;
+	}
+}
+
+
+
+
+

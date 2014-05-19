@@ -81,6 +81,7 @@ app.post("/:username",			UserController.UserForUsername,
  */
 app.get("/:username/:route",	UserController.UserForUsername,
 								UserController.ValidateTokenInQuery,
+								UserController.CheckRequestCountLimit,
 								RouteController.GetRoute,
 								UserController.IncrementRequestCount,
 								RouteController.PopulateModel);
@@ -112,7 +113,7 @@ app.delete("/killall",			UserController.Destroy,
 								function(req, res) {
 									res.send(200, "Destroyed all Users and Routes.");
 								});
-								
+
 app.listen(5000);
 
 exports.app = app;

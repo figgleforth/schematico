@@ -52,11 +52,7 @@ exports.Authenticate = function(req, res, next) {
 
 exports.IncrementRequestCount = function(req, res, next) {
 	if (req.user) {
-		console.log("request count before increment: ", req.user.requests);
-		var count = req.user.requests;
-		count++;
-		req.user.requests = count;
-		console.log("request count after increment: ", req.user.requests);
+		req.user.requests = (req.user.requests++);
 		req.user.save(function(error) {
 			if (error) {
 				res.send(500, "Something went wrong. Please try again.");
@@ -64,6 +60,18 @@ exports.IncrementRequestCount = function(req, res, next) {
 				next();
 			}
 		});
+	} else {
+		res.send(400, "Not authenticated.");
+	}
+}
+
+exports.CheckRequestCountLimit = function(req, res, next) {
+	if (req.user) {
+		if (util.isOverRequestLimit(req.user.tier, req.user)) {
+			res.send(400, "Sorry, you have reached your API call limit for the day.");
+		} else {
+			next();
+		}
 	} else {
 		res.send(400, "Not authenticated.");
 	}
