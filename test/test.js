@@ -261,7 +261,7 @@ describe("API", function() {
 		request(app)
 		.post("/"+_username+"?token="+_newUserToken)
 		.set("Content-Type", "application/json")
-		.send(badCredentials);
+		.send(badCredentials)
 		.end(function(error, res) {
 			res.should.have.status(400);
 			done();
@@ -277,7 +277,7 @@ describe("API", function() {
 		request(app)
 		.post("/"+_username+"?token="+_newUserToken)
 		.set("Content-Type", "application/json")
-		.send(goodCredentials);
+		.send(goodCredentials)
 		.end(function(error, res) {
 			res.should.have.status(200);
 			done();
