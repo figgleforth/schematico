@@ -35,13 +35,13 @@ exports.ResetRateLimitsWithMiddleware = function(req, res, next) {
 }
 
 exports.CreateNewUser = function(req, res, next) {
-	var salt = bcrypt.genSaltSync(10);
-	var passhash = bcrypt.hashSync(req.body.password, salt);
+	// var salt = bcrypt.genSaltSync(10);
+	// var passhash = bcrypt.hashSync(req.body.password, salt);
 	new Models.User({
 		username : req.body.username,
 		email : req.body.email,
-		salt : salt,
-		passhash : passhash,
+		// salt : salt,
+		// passhash : passhash,
 		token : chance.hash({length:30})
 	}).save(function(err, saved) {
 		if (err) { res.send(err); }
