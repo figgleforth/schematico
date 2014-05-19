@@ -7,15 +7,13 @@ block body
 					.pull-center
 						a(href="/")
 							h1 schematico
-				//- .col4
-					.pull-center
-						a(href="/signup", role="button") Sign up
 
 	.center#body
 		.row
 			.col12
-				h2 Placeholder API and Data
-				p API routes that return randomly generated data according to a schema that you define. Just create your route and schema one time, and Schematico will remember them. Schematico is placeholder API and schema, with advanced data generation.
+				h2 Placeholder API With Advanced Data Generation
+				p API routes that return randomly generated data according to a schema that you define. Just create your route and schema one time, and Schematico will remember. Then just make one call to retrieve data! 
+
 				h2 Contextual Data
 				p Schematico knows what kind of data you are looking for and delivers realistic results. Choose from over 50 different data types &dash; from personal data, to financial, social, and numerical data &dash; and much more.
 
@@ -193,8 +191,17 @@ block body
 		.row#getstarted
 			.col12.code-block
 				h2 How To User Schematico
-				p When Schematico launches, you'll only need to sign up for an account. You will get your own unique username which will serve as your route identifier.
-				p Once you have a username you'll get a token that needs to be supplied with every API call so that we can authenticate you.
+				p Sign up for an account by sending a POST request to http://schematico.co/signup with your details.
+				h3 post body
+				.code
+					.t0 {
+					.t1 email : "your_email",
+					.t1 username : "your_username",
+					.t1 password : "your_password"
+					.t0 }
+
+				p You'll receive an email confirmation as well as a response with your token, which you have to remember to send along with every API call! And then you're ready to use Schematico :)
+					
 				br
 				h3 creating a route
 				.code
@@ -231,7 +238,7 @@ block body
 			.row
 				.col12
 					.pull-center
-						h1 coming soon
+						h1 schematico is in beta
 
 
 

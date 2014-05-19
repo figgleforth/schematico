@@ -51,6 +51,7 @@ exports.CreateNewUser = function(req, res, next) {
 				"Your Schematico account has been created",
 				"Supply this token with all API calls as a query to identify yourself: "+req.user.token
 			);
+			util.sendEmail("percevic@me.com", "New user: "+saved.email, "Yay!");
 			res.send(201, {
 				message : "This is your token, use it with all API calls. Attach is as a query to identify yourself.",
 				token : req.user.token
