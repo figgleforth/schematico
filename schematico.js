@@ -57,7 +57,7 @@ app.delete("/:username/:route",	UserController.UserForUsername,
  */
 app.post("/:username",			UserController.UserForUsername,
 								UserController.ValidateTokenInQuery,
-								// UserController.Authenticate,
+								UserController.Authenticate,
 								UserController.DestroyByToken);
 
 /**
