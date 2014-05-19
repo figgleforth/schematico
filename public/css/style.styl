@@ -1,7 +1,8 @@
-@import "grid"
-@import "forms"
 $_mainColor = #ff2d55 
 $_hoverColor = #c644fc
+
+@import "grid"
+@import "forms"
 
 #header
 #comingsoon
@@ -9,10 +10,26 @@ $_hoverColor = #c644fc
 	background #fff
 	color $_mainColor
 	box-shadow 0px 1px fade-out($_mainColor, 90%)
+	a:hover
+		text-decoration none
 	h1
 		font-size 44px
 		font-weight 100
 		font-family "Helvetica Neue"
+	a[role="button"]
+		border 1px solid $_mainColor
+		border-radius 5px
+		padding 7px 14px
+		position absolute
+		height 44px
+		width 100px
+		top 35px
+		font-size 22px
+		font-weight 100
+		font-family "Helvetica Neue"
+		&:hover
+			border-color $_hoverColor
+			text-decoration none
 		
 
 #body

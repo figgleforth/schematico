@@ -1,50 +1,60 @@
 ::-webkit-input-placeholder { /* WebKit browsers */
 	font-size: 33px;
 	font-weight: 100;
-	color: #ffdcd5
+	color: fade-out($_mainColor, 65%);
 }
 :-moz-placeholder { /* Mozilla Firefox 4 to 18 */
 	font-size: 33px;
 	font-weight: 100;
-	color: #ffdcd5
+	color: fade-out($_mainColor, 65%);
 	opacity:  1;
 }
 ::-moz-placeholder { /* Mozilla Firefox 19+ */
 	font-size: 33px;
 	font-weight: 100;
-	color: #ffdcd5
+	color: fade-out($_mainColor, 65%);
 	opacity:  1;
 }
 :-ms-input-placeholder { /* Internet Explorer 10+ */
 	font-size: 33px;
 	font-weight: 100;
-	color: #ffdcd5
+	color: fade-out($_mainColor, 65%)
 }
 
-form[role="activity"]
+
+.form
+	// border 1px solid #fee9ef
+	// border-radius 5px
+	padding 10px
+
+form[role="marketing"]
 	input
+		box-shadow 0px 1px #fee9ed
 		border none
 		background transparent
 		text-indent 4px
-		color #666
+		color $_mainColor
 		font-family "Helvetica Neue"
 		font-weight 100
 		font-size 33px
 		width 100%
 		margin 20px 10px
-		box-shadow 0px 1px #fee9ef
-		text-align center
-
-#getnotified
-	margin-top 60px
-
-form[role="marketing"]
-	border 1px solid #fee9ef
-	border-radius 5px
-	padding 10px
-	input
-		border none
-		background transparent
-		box-shadow 0px 1px #fee9ef
-		width 100%
-
+		&:focus
+			color $_hoverColor
+	button[type="submit"]
+		background #fff
+		color $_mainColor
+		border 1px solid $_mainColor
+		border-radius 5px
+		padding 7px 14px
+		height 44px
+		width 50%
+		top 35px
+		font-size 22px
+		font-weight 100
+		font-family "Helvetica Neue"
+		cursor pointer
+		&:hover
+			color $_hoverColor
+			border-color $_hoverColor
+			text-decoration none

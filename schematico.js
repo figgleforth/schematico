@@ -41,13 +41,23 @@ app.get("/", function(req, res) {
 	res.render("index");
 });
 
+app.get("/signup", function(req, res) {
+	res.render("signup");
+});
+
 /**
 	Sign up for an account
 	@param body 	email, username, password
  */
 app.post("/signup",				UserController.CheckIfEmailExists,
 								UserController.CheckIfUsernameExists,
-								UserController.CreateNewUser);
+								UserController.CreateNewUser,
+								function(req, res) {
+									res.render("signup", {
+										message : "This is your token, use it with all API calls. Attach is as a query to identify yourself. There is a daily limit of 100 requests.",
+										token : req.user.token
+									});
+								});
 
 /**
 	Get your token back by authing email and password
