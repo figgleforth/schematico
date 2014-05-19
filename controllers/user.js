@@ -5,6 +5,31 @@ var Models = require("../models");
 var ObjectId = mongoose.Schema.Types.ObjectId;
 var chance = new require("chance")(function() { return Math.random(); });
 
+exports.ResetRateLimitsWithoutMiddleware = function(req, res, next) {
+	Models.User.find({}, function(error, found) {
+		if (error) console.log("Error resetting limits: ", error);
+		else {
+			for (var i = 0; i < found.length; i++) {
+				found[i].numberOfRequests = 0;
+				found[i].save();
+			}
+		}
+	});
+}
+
+exports.ResetRateLimitsWithMiddleware = function(req, res, next) {
+	Models.User.find({}, function(error, found) {
+		if (error) res.send(400, error);
+		else {
+			for (var i = 0; i < found.length; i++) {
+				found[i].numberOfRequests = 0;
+				found[i].save();
+			}
+			res.send(200, "Rates reset :)");
+		}
+	});
+}
+
 exports.CreateNewUser = function(req, res, next) {
 	var salt = bcrypt.genSaltSync(10);
 	var passhash = bcrypt.hashSync(req.body.password, salt);
@@ -69,8 +94,6 @@ exports.IncrementRequestCount = function(req, res, next) {
 
 exports.CheckRequestCountLimit = function(req, res, next) {
 	if (req.user) {
-		console.log("#: ", req.user.numberOfRequests);
-		console.log("limit: ", req.user.limitForNumberOfRequests);
 		if (req.user.numberOfRequests >= req.user.limitForNumberOfRequests) {
 			res.send(400, "Sorry, you have reached your API call limit for the day.");
 		} else {

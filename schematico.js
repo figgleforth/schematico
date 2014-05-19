@@ -4,6 +4,7 @@ var express = require("express");
 var stylus = require("stylus");
 var util = require("./controllers/util");
 var bodyParser = require("body-parser");
+var scheduler = require("node-schedule");
 var app = express();
 var env = process.env.NODE_ENV || 'development';
 if ('development' == env) {
@@ -25,6 +26,14 @@ if ('development' == env) {
 	});
 }
 util.connectToMongoDB("localhost", "alpha");
+
+// Schedule API call limit reset
+var limitResetter = scheduler.scheduleJob({hour:24}, function() {
+	console.log("Resetting every user's rate limits - "+new Date());
+	UserController.ResetRateLimitsWithoutMiddleware;
+	console.log("Finished resetting every user's rate limits - "+new Date());
+});
+
 
 // Static Pages //
 app.get("/", function(req, res) {
@@ -108,6 +117,8 @@ app.put("/:username/:route",	UserController.UserForUsername,
 								RouteController.UpdateRoute);
 
 // DEBUG
+app.get("/reset", 				UserController.ResetRateLimitsWithMiddleware);
+
 app.delete("/killall",			UserController.Destroy,
 								RouteController.Destroy,
 								function(req, res) {
