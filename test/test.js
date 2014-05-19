@@ -26,13 +26,14 @@ describe("Static Pages", function() {
 });
 
 describe("API", function() {
+	var _email = "example@example.com";
 	var _username = "example";
 	var _route = "example";
 	var _newUserToken;
 
 	it("Create new user should return 201", function(done) {
 		var newUser = {
-			email : "example@email.com",
+			email : _email,
 			username : _username,
 			password : "example"
 		}
@@ -51,7 +52,7 @@ describe("API", function() {
 
 	it("Create the same user should return 400", function(done) {
 		var newUser = {
-			email : "example@email.com",
+			email : _email,
 			username : _username,
 			password : "example"
 		}
@@ -120,7 +121,7 @@ describe("API", function() {
 
 	it("Recover token with good credentials should return 200", function(done) {
 		var goodCredentials = {
-			email : "example@email.com",
+			email : _email,
 			password : "example"
 		}
 
@@ -234,7 +235,7 @@ describe("API", function() {
 
 	it("Create another user with the same details should return 400", function(done) {
 		var newUser = {
-			email : "example@email.com",
+			email : _email,
 			username : _username,
 			password : "example"
 		}
@@ -267,7 +268,7 @@ describe("API", function() {
 
 	it("Delete user with good credentials token should return 200", function(done) {
 		var goodCredentials = {
-			email : "example@email.com",
+			email : _email,
 			password : "example"
 		}
 
