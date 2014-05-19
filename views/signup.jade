@@ -18,7 +18,7 @@ block body
 		.row
 			.col12
 				.form
-					form(role="marketing", method="post", action="/signup")
+					form(role="marketing", method="post", action="/signup")#signup
 						input(type="email", name="email", placeholder="What's your email?", autocomplete="off")#email
 						input(type="password", name="password", placeholder="Set a password", autocomplete="off")#password
 						input(type="username", name="username", placeholder="Pick a username", autocomplete="off")#username
@@ -27,3 +27,15 @@ block body
 		- }
 	script.
 		$("#email").focus();
+		$("#signup").on("submit", function(event) {
+			event.preventDefault();
+			$.ajax({
+				url: '/signup',
+				type: 'post',
+				dataType: 'json',
+				data: $('#signup').serialize(),
+				success: function(data) {
+					console.log("data: ", data);
+				}
+			});
+		});
