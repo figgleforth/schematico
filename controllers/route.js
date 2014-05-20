@@ -111,10 +111,12 @@ exports.GetRoutes = function(req, res, next) {
 			if (error) util.error(error, res);
 			else {
 				if (found) {
-					found = found.map(function(route) {
-						return route.route;
-					});
-					res.send(200, found);
+					var routesToReturn = {};
+					for (var i=0; i<found.length; i++) {
+						var route = found[i];
+						routesToReturn[route.route] = route.model;
+					}
+					res.send(200, routesToReturn);
 				} else {
 					res.send(400, "This user has no routes.");
 				}

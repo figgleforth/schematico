@@ -37,6 +37,9 @@ exports.ResetRateLimitsWithMiddleware = function(req, res, next) {
 exports.CreateNewUser = function(req, res, next) {
 	// var salt = bcrypt.genSaltSync(10);
 	// var passhash = bcrypt.hashSync(req.body.password, salt);
+	if (!req.body.username || !req.body.email) {
+		res.send(400, "Make sure you send the proper body with the POST request.");
+	}
 	new Models.User({
 		username : req.body.username,
 		email : req.body.email,
@@ -51,7 +54,7 @@ exports.CreateNewUser = function(req, res, next) {
 				"Your Schematico account has been created",
 				"Supply this token with all API calls as a query to identify yourself: "+req.user.token
 			);
-			util.sendEmail("percevic@me.com", "New user: "+saved.email, "Yay!");
+			util.sendEmail("percevic@me.com", "New user: "+saved.username, "Yay!");
 			res.send(201, {
 				message : "This is your token, use it with all API calls. Attach is as a query to identify yourself.",
 				token : req.user.token
@@ -61,6 +64,7 @@ exports.CreateNewUser = function(req, res, next) {
 };
 
 exports.Authenticate = function(req, res, next) {
+	if (!req.body.email) { res.send(400, "Must include an email."); }
 	Models.User.findOne({
 		email : req.body.email
 	}, function(error, user) {
@@ -118,6 +122,7 @@ exports.RecoverToken = function(req, res, next) {
 }
 
 exports.CheckIfEmailExists = function(req, res, next) {
+	if (!req.body.email) { res.send(400, "Must include email."); }
 	Models.User.count({email:req.body.email}, function(error, count) {
 		if (count > 0) {
 			res.send(400, util.res("That email is already in use."));
