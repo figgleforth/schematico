@@ -37,6 +37,7 @@ exports.ResetRateLimitsWithMiddleware = function(req, res, next) {
 exports.CreateNewUser = function(req, res, next) {
 	// var salt = bcrypt.genSaltSync(10);
 	// var passhash = bcrypt.hashSync(req.body.password, salt);
+	console.log("post body: ", req.body);
 	if (!req.body.username || !req.body.email) {
 		res.send(400, "Make sure you send the proper body with the POST request.");
 	}
