@@ -38,6 +38,8 @@ app.delete("/killall",			UserController.Destroy,
 
 // Static Pages //
 app.get("/", function(req, res) {
+	var ip = req.headers['x-forwarded-for'] || req.connection.remoteAddress;
+	console.log(ip);
 	res.render("index");
 });
 

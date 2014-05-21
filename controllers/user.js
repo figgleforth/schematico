@@ -71,11 +71,11 @@ exports.Authenticate = function(req, res, next) {
 		if (error) res.send(error);
 		else {
 			if (user) {
-				if (bcrypt.compareSync(req.body.password, user.passhash)) {
+				if (user.username == req.body.username) {
 					req.user = user;
 					next();
 				} else {
-					res.send(400, util.res("Password does not match the email."));
+					res.send(400, "The username is incorrect.");
 				}
 			} else {
 				res.send(400, util.res("User by that email doesn't exist."));

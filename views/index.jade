@@ -12,7 +12,7 @@ block body
 		.row
 			.col12
 				h2 Placeholder API With Advanced Data Generation
-				p API routes that return randomly generated data according to a schema that you define. Just create your route and schema one time, and Schematico will remember. Then just make one call to retrieve data! 
+				p Create custom API routes that return randomly generated data according to a schema that you define. Just create your route and schema one time, and Schematico will remember. Then just make one call to retrieve data! 
 
 				h2 Contextual Data
 				p Schematico knows what kind of data you are looking for and delivers realistic results. Choose from over 50 different data types &dash; from personal data, to financial, social, and numerical data &dash; and much more.
@@ -22,17 +22,17 @@ block body
 				h3 Sample schematic
 				.code.request
 					.t0 {
-					.t1 	name : {
-					.t2 		first : "FirstName",
-					.t2 		last : "LastName"
+					.t1 	"name" : {
+					.t2 		"first" : "FirstName",
+					.t2 		"last" : "LastName"
 					.t1 	},
-					.t1 	phone : "Phone",
-					.t1 	email : "Email",
-					.t1 	address : {
-					.t2 		street : "Street",
-					.t2 		city : "City",
-					.t2 		state : "State",
-					.t2 		zip : "Zip",
+					.t1 	"phone" : "Phone",
+					.t1 	"email" : "Email",
+					.t1 	"address" : {
+					.t2 		"street" : "Street",
+					.t2 		"city" : "City",
+					.t2 		"state" : "State",
+					.t2 		"zip" : "Zip",
 					.t1 	}
 					.t0 }
 
@@ -40,17 +40,17 @@ block body
 				h3 generated response
 				.code.response
 					.t0 {
-					.t1 	name : {
-					.t2 		first : "John",
-					.t2 		last : "Smith"
+					.t1 	"name" : {
+					.t2 		"first" : "John",
+					.t2 		"last" : "Smith"
 					.t1 	},
-					.t1 	phone : "(417) 934-4467",
-					.t1 	email : "mibomu@ibevajoh.io",
-					.t1 	address : {
-					.t2 		street : "Rolla Drive",
-					.t2 		city : "Buffalo",
-					.t2 		state : "NY",
-					.t2 		zip : "14221",
+					.t1 	"phone" : "(417) 934-4467",
+					.t1 	"email" : "mibomu@ibevajoh.io",
+					.t1 	"address" : {
+					.t2 		"street" : "Rolla Drive",
+					.t2 		"city" : "Buffalo",
+					.t2 		"state" : "NY",
+					.t2 		"zip" : "14221",
 					.t1 	}
 					.t0 }
 
@@ -64,57 +64,57 @@ block body
 				h3 Sample schematic
 				.code.request
 					.t0 {
-					.t1 	identity : {
-					.t2 		email : "Email",
-					.t2 		social : {
-					.t3 			twitter : "TwitterHandle",
-					.t3 			facebook : "FacebookID",
-					.t3 			website : {
-					.t4 				domain : "Domain",
-					.t4 				ip : "IP"
+					.t1 	"identity" : {
+					.t2 		"email" : "Email",
+					.t2 		"social" : {
+					.t3 			"twitter" : "TwitterHandle",
+					.t3 			"facebook" : "FacebookID",
+					.t3 			"website" : {
+					.t4 				"domain" : "Domain",
+					.t4 				"ip" : "IP"
 					.t3 			}
 					.t2 		}
 					.t1 	},
-					.t1 	friends : [{
-					.t2 		username : "Username",
-					.t2 		twitter : "TwitterHandle"
+					.t1 	"friends" : [{
+					.t2 		"username" : "Username",
+					.t2 		"twitter" : "TwitterHandle"
 					.t1 	}, 5]
 					.t0 }
 			.col6
 				h3 generated response
 				.code.response
 					.t0 {
-					.t1 	identity : {
-					.t2 		email : "vihul@kuvankac.gov",
-					.t2 		social : {
-					.t3 			twitter : "@oj",
-					.t3 			facebook : "1000085540447128",
-					.t3 			website : {
-					.t4 				domain : "uv.edu",
-					.t4 				ip : "14.64.214.178"
+					.t1 	"identity" : {
+					.t2 		"email" : "vihul@kuvankac.gov",
+					.t2 		"social" : {
+					.t3 			"twitter" : "@oj",
+					.t3 			"facebook" : "1000085540447128",
+					.t3 			"website" : {
+					.t4 				"domain" : "uv.edu",
+					.t4 				"ip" : "14.64.214.178"
 					.t3 			}
 					.t2 		}
 					.t1 	},
-					.t1 	friends : [
+					.t1 	"friends" : [
 					.t2 		{
-					.t3 			username : "Abigail_Price",
-					.t3 			twitter : "@tujja"
+					.t3 			"username" : "Abigail_Price",
+					.t3 			"twitter" : "@tujja"
 					.t2 		},
 					.t2 		{
-					.t3 			username : "Katlyn.Kohler",
-					.t3 			twitter : "@esemu"
+					.t3 			"username" : "Katlyn.Kohler",
+					.t3 			"twitter" : "@esemu"
 					.t2 		},
 					.t2 		{
-					.t3 			username : "Rafaela",
-					.t3 			twitter : "@tifjacno"
+					.t3 			"username" : "Rafaela",
+					.t3 			"twitter" : "@tifjacno"
 					.t2 		},
 					.t2 		{
-					.t3 			username : "Lauretta_Schmitt",
-					.t3 			twitter : "@favius"
+					.t3 			"username" : "Lauretta_Schmitt",
+					.t3 			"twitter" : "@favius"
 					.t2 		},
 					.t2 		{
-					.t3 			username : "Leilani",
-					.t3 			twitter : "@ulwec"
+					.t3 			"username" : "Leilani",
+					.t3 			"twitter" : "@ulwec"
 					.t2 		}
 					.t1 	]
 					.t0 }
@@ -191,12 +191,12 @@ block body
 		.row#getstarted
 			.col12.code-block
 				h2 How To User Schematico
-				p Sign up for an account by sending a POST request to http://schematico.co/signup with your details.
+				p Sign up for an account by sending a POST request to http://schematico.co/signup with your details. An email address is required in order to recover the token if lost.
 				h3 post body
 				.code
 					.t0 {
-					.t1 email : "your_email",
-					.t1 username : "your_username"
+					.t1 "email" : "your_email",
+					.t1 "username" : "your_username"
 					.t0 }
 
 				p You'll receive an email confirmation as well as a response with your token, which you have to remember to send along with every API call! And then you're ready to use Schematico :)
@@ -225,20 +225,29 @@ block body
 					br
 					.t1 { ... your_schema_with_data ... }
 				h3 getting more data &dash; 173 objects
-				.code(style="margin-bottom: 0px !important;")
+				.code
 					.t0 GET http://schematico.co/your_username/your_route?token=your_token&count=173
 					br
 					.t0 RESPONSE BODY
 					br
 					.t1 [{ ... your_schema_with_data ... }, ...]
-
+				h3 recovering your token
+				.code(style="margin-bottom: 0px !important;")
+					.t0 POST http://schematico.co/recover
+					br
+					.t0 REQUEST BODY
+					br
+					.t0 {
+					.t1 "email" : "your_email",
+					.t1 "username" : "your_username"
+					.t0 }
 	.full#comingsoon
 		.center
 			.row
 				.col12
 					.pull-center
 						h1 schematico is in beta
-
+						p <a href="https://twitter.com/bpercevic">made by @bpercevic</a> 
 
 
 
