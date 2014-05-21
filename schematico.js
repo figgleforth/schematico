@@ -43,9 +43,12 @@ app.get("/", function(req, res) {
 	res.render("index");
 });
 
-// app.get("/signup", function(req, res) {
-// 	res.render("signup");
-// });
+// Parameter Middleware //
+app.param("username", function(req, res, next, id) {
+	console.log("param: username.");
+	console.log("id: ", id);
+	next();
+});
 
 /**
 	Sign up for an account
