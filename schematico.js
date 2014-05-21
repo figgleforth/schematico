@@ -37,16 +37,19 @@ app.delete("/killall",			UserController.Destroy,
 								});
 
 // Static Pages //
+var numberOfVisitors = 0;
 app.get("/", function(req, res) {
 	var ip = req.headers['x-forwarded-for'] || req.connection.remoteAddress;
-	console.log(ip);
+	var time = new Date();
+	numberOfVisitors++;
+	console.log(numberOfVisitors+" visits - "+time.toDateString()+" - "+ip);
 	res.render("index");
 });
 
 // Parameter Middleware //
 app.param("username", function(req, res, next, id) {
-	console.log("param: username.");
-	console.log("id: ", id);
+	// console.log("param: username."); = the key
+	// console.log("id: ", id); = the actual value
 	next();
 });
 
