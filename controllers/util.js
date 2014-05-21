@@ -167,6 +167,9 @@ function _valueForKeyInDictionary(key, dictionary) {
 			case "Avatar":
 				value = faker.Image.avatar();
 				break;
+			case "Image":
+				value = "http://instasrc.com/400x400";
+				break;
 			case "FacebookID":
 				value = chance.fbid();
 				break;
