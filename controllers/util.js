@@ -168,7 +168,7 @@ function _valueForKeyInDictionary(key, dictionary) {
 				value = faker.Image.avatar();
 				break;
 			case "Image":
-				value = "http://instasrc.com/400x400";
+				value = "http://instasrc.com/"+Math.round(400+(Math.random()*100))+"x"+Math.round(400+(Math.random()*100));
 				break;
 			case "FacebookID":
 				value = chance.fbid();
@@ -199,7 +199,7 @@ function _valueForKeyInDictionary(key, dictionary) {
 			case "+Date":
 				value = faker.Date.future(1 + Math.round(Math.random()*100));
 				break;
-			case "+?Date":
+			case "?Date":
 				if (Math.random() < 0.5) {
 					value = faker.Date.past(1 + Math.round(Math.random()*100));
 				} else {

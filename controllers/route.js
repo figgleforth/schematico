@@ -147,13 +147,13 @@ exports.PopulateModel = function(req, res, next) {
 			}
 			data.push(dictionary);
 		}
-		res.send(200, data);
+		res.jsonp(200, data);
 	} else {
 		var dictionary = JSON.parse(JSON.stringify(req.model));
 		for (var key in dictionary) {
 			dictionary[key] = util.valueForKeyInDictionary(key, dictionary);
 		}
-		res.send(200, dictionary);
+		res.jsonp(200, dictionary);
 	}
 }
 
