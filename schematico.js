@@ -27,15 +27,6 @@ if ('development' == env) {
 }
 util.connectToMongoDB("localhost", "alpha");
 
-// DEBUG
-app.get("/resetlimits", 		UserController.ResetRateLimitsWithMiddleware);
-
-app.delete("/killall",			UserController.Destroy,
-								RouteController.Destroy,
-								function(req, res) {
-									res.send(200, "Destroyed all Users and Routes.");
-								});
-
 // Static Pages //
 var numberOfVisitors = 0;
 app.get("/", function(req, res) {
@@ -130,13 +121,6 @@ app.put("/:username/:route",	UserController.UserForUsername,
 								RouteController.UpdateRoute);
 
 app.listen(5000);
-
-// Schedule API call limit reset
-// var limitResetter = scheduler.scheduleJob({hour:24}, function() {
-// 	console.log("Resetting every user's rate limits - "+new Date());
-// 	UserController.ResetRateLimitsWithoutMiddleware;
-// 	console.log("Finished resetting every user's rate limits - "+new Date());
-// });
 
 exports.app = app;
 exports.UserController = UserController;
