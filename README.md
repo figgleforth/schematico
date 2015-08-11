@@ -34,28 +34,62 @@ The model can contain as many nested objects as you want. To get multiple object
 
 #### Available Types
 
-* String
-* Word
-* Sentence
-* Paragraph
 * Number
-* -Number
+* -Number (Negative)
+* ?Number (Positive or Negative)
 * Integer
-* -Integer
+* -Integer (Negative)
+* ?Integer (Positive or Negative)
 * Boolean
-
-#### Todo
-
-* User accounts so that routes can be persistent, really basic auth.
-* More types
-  * Name
-  * Address
-  * Phone
-  * City
-  * State
-  * Country
-  * Continent
-  * Zip code
-  * Language
-  * Time
-  * Date
+* Character
+* Name
+* FirstName
+* LastName
+* Gender
+* Birthday
+* Age
+* Address
+* Zip
+* City
+* Street
+* State
+* LongState
+* Coordinates
+* Latitude
+* Longitude
+* AreaCode
+* Phone
+* Company
+* HexColor
+* RGBColor
+* Hash
+* GUID
+* Dollar
+* CreditCardNumber
+* CreditCardType
+* CreditCardExpiration
+* CreditCardExpirationMonth
+* CreditCardExpirationYear
+* Email
+* Username
+* Domain
+* TLD
+* IP
+* IPv6
+* Avatar
+* FacebookID
+* TwitterHandle
+* Hashtag
+* -Date (Past)
+* Date (Present)
+* +Date (Future)
+* ?Date (Past or Future)
+* Day
+* Month
+* Year
+* Word
+* Words
+* Sentence
+* Sentences
+* Paragraph
+* Paragraphs
